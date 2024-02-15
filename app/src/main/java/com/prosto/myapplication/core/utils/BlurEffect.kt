@@ -7,7 +7,7 @@ import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 
-fun View.applyBlurEffect(radius: Float = 15f, tileMode: Shader.TileMode = Shader.TileMode.MIRROR) {
+fun View.applyBlurEffect(radius: Float = 36f, tileMode: Shader.TileMode = Shader.TileMode.MIRROR) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         val renderEffect = RenderEffect.createBlurEffect(radius, radius, tileMode)
         this.setRenderEffect(renderEffect)

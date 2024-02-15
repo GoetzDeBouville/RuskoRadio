@@ -9,19 +9,19 @@ import com.prosto.myapplication.core.utils.clearBlurEffect
 import com.prosto.myapplication.databinding.ActivityMainBinding
 import com.prosto.myapplication.databinding.FragmentRadioBinding
 import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
-@EntryPoint
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
     override fun initViews() {
-        TODO("Not yet implemented")
     }
 
     fun applyBlurEffect() {
-        binding.root.applyBlurEffect()
+        binding.bannerAdView.applyBlurEffect()
     }
 
     fun clearBlurEffect() {
-        binding.root.clearBlurEffect()
+        binding.bannerAdView.clearBlurEffect()
     }
 }

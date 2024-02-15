@@ -64,5 +64,5 @@ dependencies {
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.common.java8)
     implementation(libs.yandex.ad)
-
+    implementation(libs.lottie)
 }
