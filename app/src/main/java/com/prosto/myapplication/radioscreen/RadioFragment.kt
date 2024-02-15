@@ -22,15 +22,16 @@ class RadioFragment :
 
     private fun applyBackgroundBlur() = with(binding) {
         ivLogo.applyBlurEffect()
+        ivPlaypause.applyBlurEffect()
         llPlayer.applyBlurEffect()
         llFooter.applyBlurEffect()
         (requireActivity() as MainActivity).applyBlurEffect()
-
     }
 
     private fun clearBackgroundBlur() = with(binding) {
         ivLogo.clearBlurEffect()
         llPlayer.clearBlurEffect()
+        ivPlaypause.clearBlurEffect()
         llFooter.clearBlurEffect()
         (requireActivity() as MainActivity).clearBlurEffect()
     }
