@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Rusko Radio</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo">Logo</string>
+    <string name="globe">🌐</string>
+    <string name="email">📧</string>
+    <string name="share">Share</string>
+    <string name="on_air">В эфире</string>
+    <string name="play_radio">Play radio</string>
+</resources>
