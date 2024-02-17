@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.ksp)
+    id("kotlin-kapt")
+    alias(libs.plugins.serialization)
     id("com.google.dagger.hilt.android")
 }
 
@@ -43,13 +44,12 @@ android {
 
 dependencies {
     implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    kapt(libs.hilt.compiler)
 
     implementation(libs.bundles.navigation)
     implementation(libs.fragment)
 
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.android)
+    implementation(libs.bundles.retrofit)
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)

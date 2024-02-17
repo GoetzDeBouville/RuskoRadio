@@ -17,8 +17,8 @@ fun View.applyBlurEffect(radius: Float = 36f, tileMode: Shader.TileMode = Shader
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
             )
-            setBackgroundColor(Color.BLACK)
-            alpha = 0.9f
+            setBackgroundColor(Color.WHITE)
+            alpha = 0.1f
         }
         if (this.parent is ViewGroup) {
             val parentView = this.parent as ViewGroup

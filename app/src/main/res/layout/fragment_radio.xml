@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".radioscreen.RadioFragment">
+    tools:context=".radioscreen.fragment.RadioFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_progressbar"
@@ -50,6 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_playpause">
 
         <TextView
+            android:id="@+id/tv_on_air"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/on_air"
@@ -57,7 +58,7 @@
             android:textSize="@dimen/text_24" />
 
         <TextView
-            android:id="@+id/songTextView"
+            android:id="@+id/tv_song_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
