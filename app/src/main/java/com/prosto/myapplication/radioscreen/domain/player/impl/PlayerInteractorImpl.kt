@@ -1,33 +1,29 @@
 package com.prosto.myapplication.radioscreen.domain.player.impl
 
-import android.media.MediaPlayer
-import com.prosto.myapplication.radioscreen.domain.player.models.PlayerState
-import com.prosto.myapplication.radioscreen.domain.player.models.PlayerStateObserver
 import com.prosto.myapplication.radioscreen.domain.player.api.PlayerInteractor
+import com.prosto.myapplication.radioscreen.domain.player.api.PlayerRepository
+import com.prosto.myapplication.radioscreen.domain.player.models.PlayerStateObserver
 
-class PlayerInteractorImpl : PlayerInteractor {
-    private var mediaPlayer: MediaPlayer? = null
-    private var currentTrackTime: Long = 0L
-    private var startTime: Long = 0L
-    private var playerState: PlayerState = PlayerState.STATE_DEFAULT
-    private val observers = mutableListOf<PlayerStateObserver>()
+class PlayerInteractorImpl(
+    private val player: PlayerRepository
+) : PlayerInteractor {
+    override fun getPlayerState(observer: PlayerStateObserver) {
+        player.getPlayerState(observer)
+    }
 
-//    override fun getPlayerState(observer: PlayerStateObserver) {
-//    }
+    override fun preparePlayer(callback: (Boolean) -> Unit) {
+        player.preparePlayer(callback)
+    }
 
     override fun pausePlayer() {
+        player.pausePlayer()
     }
 
     override fun startPlayer() {
+        player.startPlayer()
     }
 
     override fun releasePlayer() {
-        mediaPlayer?.release()
-        mediaPlayer = null
-    }
-
-    private fun updatePlayerState(state: PlayerState) {
-        playerState = state
-        observers.forEach { it.onPlayerStateChanged(state) }
+        player.releasePlayer()
     }
 }

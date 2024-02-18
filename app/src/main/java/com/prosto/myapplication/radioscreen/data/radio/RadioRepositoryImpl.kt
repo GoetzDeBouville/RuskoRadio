@@ -1,4 +1,4 @@
-package com.prosto.myapplication.radioscreen.data
+package com.prosto.myapplication.radioscreen.data.radio
 
 import com.hellcorp.restquest.domain.network.models.LoadingStatus
 import com.hellcorp.restquest.domain.network.models.Resource
