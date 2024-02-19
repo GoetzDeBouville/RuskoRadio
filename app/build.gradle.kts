@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
     alias(libs.plugins.serialization)
     id("com.google.dagger.hilt.android")
 }
@@ -44,7 +44,7 @@ android {
 
 dependencies {
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     implementation(libs.bundles.navigation)
     implementation(libs.fragment)
