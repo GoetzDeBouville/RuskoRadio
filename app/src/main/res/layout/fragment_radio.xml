@@ -4,26 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".radioscreen.fragment.RadioFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_progressbar"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="@id/iv_play_pause"
         app:layout_constraintEnd_toEndOf="@id/iv_play_pause"
         app:layout_constraintStart_toStartOf="@id/iv_play_pause"
         app:layout_constraintTop_toTopOf="@id/iv_play_pause"
-        android:visibility="gone"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/progress_bar" />
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="200dp"
+        android:layout_marginHorizontal="16dp"
         android:contentDescription="@string/logo"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,8 +67,20 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="32sp" />
-
     </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_progress_points"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="@id/ll_player"
+        app:layout_constraintEnd_toEndOf="@id/ll_player"
+        app:layout_constraintStart_toStartOf="@id/ll_player"
+        app:layout_constraintTop_toTopOf="@id/ll_player"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/progress_points" />
 
     <LinearLayout
         android:id="@+id/ll_footer"

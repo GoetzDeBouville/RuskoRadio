@@ -2,6 +2,8 @@
     <string name="app_name">Rusko Radio</string>
     <string name="internet_connection_error">Ошибка соединения\nпроверьте интернет соединение\nи повторите попытку позже</string>
     <string name="server_error">Ошибка сервера</string>
+    <string name="listen_to_rusko_radio">Слушайте Руско Радио</string>
+    <string name="notification_message">У вас есть это приложение и там хорошая музыка</string>
     <string name="loading">Загрузка</string>
     <string name="logo">Лого</string>
     <string name="on_air">В эфире</string>

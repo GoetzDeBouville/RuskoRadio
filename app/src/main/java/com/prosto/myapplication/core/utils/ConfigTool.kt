@@ -4,9 +4,9 @@ import android.content.Context
 import java.io.InputStream
 import java.util.Properties
 
-/***
-Need to be initialized before getting property values
- ***/
+/**
+ * Объект ConfigTool должен быть прроинициализирован до извлечения данных из properties
+ */
 object ConfigTool {
     private lateinit var properties: AppConfig
 
