@@ -14,8 +14,8 @@ It shows the current song info (artist and title), shows notification, and alarm
 ### Stack: 
 - [Android Studio](https://developer.android.com/studio/intro)
 - Coroutines + Flow
-- Arcitecture: MVVM+StateFlow, Single Activity + Android Navigation,
-- Network: Retrofit2,
+- Arcitecture: MVVM+StateFlow, Single Activity + Android Navigation
+- Network: Retrofit2
 - Mediaplayer
 - DI - Hilt
 
