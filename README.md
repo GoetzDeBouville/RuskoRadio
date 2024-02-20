@@ -1,9 +1,9 @@
 # RuskoRadio
 
 ![badge-Android](https://img.shields.io/badge/Platform-Android-brightgreen?logo=android&style=plastic)
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-blue.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
-[![Hilt](https://img.shields.io/badge/Hilt-2.49-red.svg?style=flat&logo=Hilt)](https://dagger.dev/hilt/)
-[![KSP](https://img.shields.io/badge/KSP-blueviolet)](https://kotlinlang.org/docs/ksp-overview.html)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-blue.svg?style=plastic&logo=kotlin)](https://kotlinlang.org)
+[![Hilt](https://img.shields.io/badge/Hilt-2.49-red.svg?style=plastic&logo=Hilt)](https://dagger.dev/hilt/)
+[![KSP](https://img.shields.io/badge/KSP-blueviolet?style=plastic)](https://kotlinlang.org/docs/ksp-overview.html)
 
 <br>
 Application for playing streaming online radio for service https://www.ruskoradio.ru/
