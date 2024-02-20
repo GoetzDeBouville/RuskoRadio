@@ -19,3 +19,4 @@ It shows the current song info (artist and title), shows notification, and alarm
 - DI - Hilt
 
 ## Screencast 
+<img src="./screenshots/000screncast.gif" width="240" height="480"> 
