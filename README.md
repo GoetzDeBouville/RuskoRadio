@@ -47,13 +47,17 @@ It shows the current song info (artist and title), shows notification, and alarm
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
+## Project Roadmap:
+- Add dark theme support
+- Add alarm manager (screen for alarm settings)
+- Add localizations
+- Add binding of album cover image (using Itunes search API???) - Open for discussion 😁
 
 ## Contributors 📢
 
 <a href="https://github.com/GoetzDeBouville/RuskoRadio/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=GoetzDeBouville/RuskoRadio"/>
 </a>
-
 
 ### Contact me  📬
 
