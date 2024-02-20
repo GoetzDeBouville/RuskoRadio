@@ -6,7 +6,7 @@
 ![badge-Android](https://img.shields.io/badge/ksp-brightgreen)
 
 <br>
-Application for playing streaming online radio for service [](https://www.ruskoradio.ru/)
+Application for playing streaming online radio for service https://www.ruskoradio.ru/
 It shows the current song info (artist and title), shows notification, and alarms.
 <br>
 
