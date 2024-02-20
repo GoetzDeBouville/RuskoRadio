@@ -28,7 +28,7 @@ class App : Application() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = NOTIFICATION_CHANNEL
+            val name = NotificationService.CHANNEL_ID
             val descriptionText = NOTIFICATIONS
             val channel = NotificationChannel(
                 NotificationService.CHANNEL_ID,
@@ -76,21 +76,9 @@ class App : Application() {
         )
     }
 
-    private fun incrementPermissionRequestCount() {
-        val prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val currentCount = prefs.getInt(PERMISSION_REQUEST_COUNT_KEY, 0)
-        prefs.edit().putInt(PERMISSION_REQUEST_COUNT_KEY, currentCount + 1).apply()
-    }
-
-    fun getPermissionRequestCount(): Int {
-        val prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        return prefs.getInt(PERMISSION_REQUEST_COUNT_KEY, 0)
-    }
-
     companion object {
         private const val HOUR_OF_DAY = 19
         private const val MINUTE = 0
-        private const val NOTIFICATION_CHANNEL = "RadioReciever Channel"
         private const val NOTIFICATIONS = "Notifications"
         private const val PERMISSION_REQUEST_COUNT_KEY = "PermissionRequestCount"
         private const val PREF_NAME = "AppPrefs"

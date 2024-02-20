@@ -16,6 +16,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
@@ -50,17 +51,11 @@ class RadioViewModel @Inject constructor(
 
     private fun getSongTitle() {
         viewModelScope.launch {
-            val tickerFlow = flow {
-                while (true) {
-                    emit(Unit)
+            while (true) {
+                radioInteractor.updateTitle().collect { result ->
+                    processResult(result)
                     delay(DELAY_3000_MS)
                 }
-            }
-
-            tickerFlow.flatMapLatest {
-                radioInteractor.updateTitle()
-            }.collect { result ->
-                processResult(result)
             }
         }
     }

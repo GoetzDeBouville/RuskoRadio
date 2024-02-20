@@ -20,12 +20,13 @@ class NotificationService(private val context: Context) {
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            .setSmallIcon(R.drawable.ic_icon)
+            .setSmallIcon(R.drawable.app_icon)
             .setContentTitle(context.getString(R.string.app_name))
             .setContentText(context.getString(R.string.on_air))
             .setContentIntent(notificationPendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setSound(null)
+            .setVibrate(null)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .build()
 
@@ -38,7 +39,5 @@ class NotificationService(private val context: Context) {
     companion object {
         const val NOTIFICATION_ID = 1
         const val CHANNEL_ID = "channel_1"
-        const val TITLE_EXTRA = "title_extra"
-        const val MESSAGE_EXTRA = "message_extra"
     }
 }
