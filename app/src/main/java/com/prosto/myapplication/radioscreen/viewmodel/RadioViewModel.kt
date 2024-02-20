@@ -3,7 +3,6 @@ package com.prosto.myapplication.radioscreen.viewmodel
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.hellcorp.restquest.domain.network.models.LoadingStatus
 import com.prosto.myapplication.core.ui.BaseViewModel
@@ -34,7 +33,7 @@ class RadioViewModel @Inject constructor(
         get() = _radioState
 
     private val _playerState = MutableStateFlow<PlayerState>(PlayerState.STATE_PAUSED)
-    val playerState : StateFlow<PlayerState>
+    val playerState: StateFlow<PlayerState>
         get() = _playerState
 
     init {
@@ -77,10 +76,12 @@ class RadioViewModel @Inject constructor(
     private fun preparePlayer() {
         releasePlayer()
         mediaPlayer = MediaPlayer().apply {
-            setAudioAttributes(AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_MEDIA)
-                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                .build())
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build()
+            )
             setDataSource(streamUrl)
             prepareAsync()
             setOnPreparedListener {
@@ -92,14 +93,15 @@ class RadioViewModel @Inject constructor(
     }
 
     fun playbackControl() {
-        Log.i("MyLog", "playbutton CLICKED!!!")
         when (_playerState.value) {
             PlayerState.STATE_PLAYING -> {
                 pausePlayer()
             }
+
             PlayerState.STATE_PREPARED, PlayerState.STATE_PAUSED, PlayerState.STATE_DEFAULT -> {
                 preparePlayer()
             }
+
             else -> Unit
         }
     }

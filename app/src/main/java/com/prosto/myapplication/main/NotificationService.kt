@@ -20,7 +20,7 @@ class NotificationService(private val context: Context) {
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            .setSmallIcon(R.drawable.logo)
+            .setSmallIcon(R.drawable.ic_icon)
             .setContentTitle(context.getString(R.string.app_name))
             .setContentText(context.getString(R.string.on_air))
             .setContentIntent(notificationPendingIntent)

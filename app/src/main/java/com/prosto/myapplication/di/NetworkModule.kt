@@ -5,7 +5,7 @@ import com.prosto.myapplication.core.utils.ConfigTool
 import com.prosto.myapplication.radioscreen.data.converters.SongMapperImpl
 import com.prosto.myapplication.radioscreen.data.network.ApiService
 import com.prosto.myapplication.radioscreen.data.network.RetrofitClient
-import com.prosto.myapplication.radioscreen.domain.player.api.SongMapper
+import com.prosto.myapplication.radioscreen.domain.radio.api.SongMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.prosto.myapplication.radioscreen.domain.player.api
+package com.prosto.myapplication.radioscreen.domain.radio.api
 
 import com.prosto.myapplication.radioscreen.dto.SongDto
 import com.prosto.myapplication.radioscreen.dto.SongEntity

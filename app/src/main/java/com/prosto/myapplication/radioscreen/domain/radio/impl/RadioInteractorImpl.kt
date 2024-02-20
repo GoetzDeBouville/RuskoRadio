@@ -2,7 +2,7 @@ package com.prosto.myapplication.radioscreen.domain.radio.impl
 
 import com.hellcorp.restquest.domain.network.models.LoadingStatus
 import com.hellcorp.restquest.domain.network.models.Resource
-import com.prosto.myapplication.radioscreen.domain.player.api.SongMapper
+import com.prosto.myapplication.radioscreen.domain.radio.api.SongMapper
 import com.prosto.myapplication.radioscreen.domain.radio.api.RadioInteractor
 import com.prosto.myapplication.radioscreen.domain.radio.api.RadioRepository
 import com.prosto.myapplication.radioscreen.dto.SongEntity

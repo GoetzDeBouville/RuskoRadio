@@ -1,10 +1,14 @@
 package com.prosto.myapplication.main
 
+import android.app.AlarmManager
+import android.content.Intent
 import android.os.Build
+import android.provider.Settings
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsetsController
 import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationManagerCompat
 import com.prosto.myapplication.core.ui.BaseActivity
 import com.prosto.myapplication.core.utils.ConfigTool
 import com.prosto.myapplication.databinding.ActivityMainBinding
@@ -29,6 +33,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         initBannerAdView()
         setStatusbarTextColor()
         initMobileAds()
+        permissionsSchedule()
+        permissionsNotification()
     }
 
     private fun setStatusbarTextColor() {
@@ -66,5 +72,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             override fun onImpression(p0: ImpressionData?) {}
         })
         bannerAdView.loadAd(adRequest)
+    }
+
+    private fun permissionsSchedule() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+            if (!alarmManager.canScheduleExactAlarms()) {
+                val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
+                    putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+                }
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun permissionsNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (!NotificationManagerCompat.from(this).areNotificationsEnabled()) {
+                val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+                    putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+                }
+                startActivity(intent)
+            }
+        }
     }
 }
