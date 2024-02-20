@@ -7,6 +7,7 @@
 
 <br>
 Application for playing streaming online radio for service https://www.ruskoradio.ru/
+<br>
 It shows the current song info (artist and title), shows notification, and alarms.
 <br>
 
