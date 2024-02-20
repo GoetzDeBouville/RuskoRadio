@@ -3,7 +3,7 @@
 ![badge-Android](https://img.shields.io/badge/Platform-Android-brightgreen)
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-blue.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 [![Hilt](https://img.shields.io/badge/Hilt-2.49-red.svg?style=flat&logo=Hilt)](https://dagger.dev/hilt/)
-![KSP](https://img.shields.io/badge/ksp-brightgreen)
+[![KSP](https://img.shields.io/badge/KSP-blueviolet)](https://kotlinlang.org/docs/ksp-overview.html/)
 
 <br>
 Application for playing streaming online radio for service https://www.ruskoradio.ru/
@@ -19,6 +19,7 @@ It shows the current song info (artist and title), shows notification, and alarm
 - Mediaplayer
 - DI - Hilt
 - Ads - yandex mobileads
+- Scheduled notifications
 
 ## Screencast 
 <img src="./screenshots/000screncast.gif" width="240" height="480"> 
