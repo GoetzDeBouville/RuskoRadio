@@ -31,7 +31,7 @@ It shows the current song info (artist and title), shows notification, and alarm
 
 2. Open the project in Android Studio.
    
-3. Go to folder app/main/assets and add `file app_config.properties`. This file should have next contains:
+3. Go to folder app/src/main/assets and add `file app_config.properties`. This file should have next contains:
 ```text
     streamUrl=https://your_stream_url
     websiteUrl=https://your_stream_url
