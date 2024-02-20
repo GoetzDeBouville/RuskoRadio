@@ -9,6 +9,7 @@
 Application for playing streaming online radio for service [](https://www.ruskoradio.ru/)
 It shows the current song info (artist and title), shows notification, and alarms.
 <br>
+
 ### Stack: 
 - [Android Studio](https://developer.android.com/studio/intro)
 - Coroutines + Flow
@@ -16,3 +17,5 @@ It shows the current song info (artist and title), shows notification, and alarm
 - Network: Retrofit2,
 - Mediaplayer
 - DI - Hilt
+
+## Screencast 
