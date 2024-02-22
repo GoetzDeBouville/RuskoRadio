@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.view.WindowInsetsController
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
+import com.prosto.myapplication.R
 import com.prosto.myapplication.core.ui.BaseActivity
 import com.prosto.myapplication.core.utils.ConfigTool
 import com.prosto.myapplication.databinding.ActivityMainBinding
@@ -38,6 +40,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     private fun setStatusbarTextColor() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.setSystemBarsAppearance(
                 WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
@@ -48,7 +52,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             window.decorView.systemUiVisibility =
                 window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
-
 
     private fun initMobileAds() {
         MobileAds.initialize(this) {}
