@@ -53,6 +53,8 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 - Add alarm manager (screen for alarm settings)
 - Add localizations
 - Add binding of album cover image (using Itunes search API???) - Open for discussion 😁
+- Add dialog message for novigation to permission list
+- Fix notification (that doesn't apear in case the phone is in battery safety mode)
 
 ## Contributors 📢
 
