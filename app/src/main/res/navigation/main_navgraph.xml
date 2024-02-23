@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/radioFragment"
-        android:name="com.prosto.myapplication.radioscreen.fragment.RadioFragment"
+        android:name="com.prosto.ruskoradio.radioscreen.fragment.RadioFragment"
         android:label="fragment_radio"
         tools:layout="@layout/fragment_radio" />
 </navigation>

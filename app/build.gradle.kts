@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.prosto.myapplication"
+    namespace = "com.prosto.ruskoradio"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.prosto.myapplication"
+        applicationId = "com.prosto.ruskoradio"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 3
