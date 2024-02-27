@@ -3,9 +3,13 @@ package com.prosto.ruskoradio.radioscreen.viewmodel
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.util.Log
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hellcorp.restquest.domain.network.models.LoadingStatus
-import com.prosto.ruskoradio.core.ui.BaseViewModel
+import com.prosto.itunesservice.domain.api.ItunesInteractor
+import com.prosto.itunesservice.domain.models.LoadingTrackStatus
+import com.prosto.itunesservice.domain.models.Track
 import com.prosto.ruskoradio.core.utils.ConfigTool
 import com.prosto.ruskoradio.radioscreen.domain.player.models.PlayerState
 import com.prosto.ruskoradio.radioscreen.domain.radio.api.RadioInteractor
@@ -22,8 +26,9 @@ import javax.inject.Inject
 @HiltViewModel
 class RadioViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val radioInteractor: RadioInteractor
-) : BaseViewModel() {
+    private val radioInteractor: RadioInteractor,
+    private val itunesInteractor: ItunesInteractor
+) : ViewModel() {
     private var mediaPlayer: MediaPlayer? = null
     private var streamUrl = ""
     private val _radioState = MutableStateFlow<RadioState>(RadioState.Loading)
@@ -39,6 +44,7 @@ class RadioViewModel @Inject constructor(
         ConfigTool.init(context)
         streamUrl = ConfigTool.getAppConfig().streamUrl
         preparePlayer()
+        getFirstTrack("Great dreamer")
     }
 
     override fun onCleared() {
@@ -54,6 +60,25 @@ class RadioViewModel @Inject constructor(
                     delay(DELAY_3000_MS)
                 }
             }
+        }
+    }
+
+    private fun getFirstTrack(expression: String?) {
+        viewModelScope.launch {
+            expression?.let {
+                itunesInteractor.getFirstTrack(expression).collect {
+                    itunesResult(it)
+                }
+            }
+        }
+    }
+
+    private fun itunesResult(result: Pair<Track?, LoadingTrackStatus?>) {
+        if (result.second == null) {
+            Log.i("MyLog", "result = ${result.first}")
+        } else {
+            Log.i("MyLog", "result = ${result.second}")
+
         }
     }
 

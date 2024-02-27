@@ -7,12 +7,12 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.hellcorp.presentation.BaseFragment
 import com.prosto.ruskoradio.R
-import com.prosto.ruskoradio.databinding.FragmentRadioBinding
-import com.prosto.ruskoradio.core.ui.BaseFragment
 import com.prosto.ruskoradio.core.utils.applyBlurEffect
 import com.prosto.ruskoradio.core.utils.clearBlurEffect
 import com.prosto.ruskoradio.core.utils.vibrateShot
+import com.prosto.ruskoradio.databinding.FragmentRadioBinding
 import com.prosto.ruskoradio.main.NotificationService
 import com.prosto.ruskoradio.radioscreen.domain.player.models.PlayerState
 import com.prosto.ruskoradio.radioscreen.domain.radio.models.RadioState
@@ -121,13 +121,6 @@ class RadioFragment :
     private fun showPauseButton() {
         binding.ivPlayPause.setImageResource(R.drawable.pause_circle)
     }
-
-//    private fun clickListeners() {
-//        emailBtnClickListener()
-//        shareBtnClickListener()
-//        websiteBtnClickListener()
-//        playBackManager()
-//    }
 
     private fun clickListeners() = with(binding) {
         val listener = onClickListener()

@@ -1,4 +1,4 @@
-package com.prosto.ruskoradio.core.ui
+package com.hellcorp.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 
 /**
- * Базовая активити, делает то же что и базовый фрагмент, но адаптирован под сингл активити
- *
+ * Base activity, doing the same that base fragment, but adopted fir single activity
  */
 typealias InflateActivity<T> = (LayoutInflater) -> T
 

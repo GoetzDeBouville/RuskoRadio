@@ -1,6 +1,7 @@
 package com.prosto.ruskoradio.di
 
 import android.content.Context
+import com.hellcorp.di_qualifiers.RuskoRadioRetrofit
 import com.prosto.ruskoradio.core.utils.ConfigTool
 import com.prosto.ruskoradio.radioscreen.data.converters.SongMapperImpl
 import com.prosto.ruskoradio.radioscreen.data.network.ApiService
@@ -20,6 +21,7 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
+    @RuskoRadioRetrofit
     fun provideRetrofit(@ApplicationContext context: Context): Retrofit {
         ConfigTool.init(context)
         val baseUrl = ConfigTool.getAppConfig().songInfoUrl
@@ -32,7 +34,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
+    fun provideApiService(@RuskoRadioRetrofit retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
     @Provides
     @Singleton
