@@ -67,6 +67,8 @@ dependencies {
     implementation(libs.lottie)
     implementation(libs.mobmetricalib)
 
+    implementation(libs.coil)
+
     implementation(project(":core:itunesservice"))
     implementation(project(":core:presentation"))
     implementation(project(":core:di-qualifiers"))
