@@ -94,43 +94,31 @@ class RadioFragment :
 
     private fun renderPlayerState(state: PlayerState) = with(binding) {
         when (state) {
-            PlayerState.STATE_PLAYING -> {
-                ivPlayPause.isEnabled = true
-                ivPlayPause.clearBlurEffect()
-                lottieProgressbar.visibility = View.GONE
-                showPauseButton()
-                notifyService.showNotification()
-            }
-
-            PlayerState.STATE_PAUSED, PlayerState.STATE_PREPARED, PlayerState.STATE_DEFAULT -> {
-                ivPlayPause.isEnabled = true
-                ivPlayPause.clearBlurEffect()
-                lottieProgressbar.visibility = View.GONE
-                showPlayButton()
-            }
-
-            PlayerState.STATE_LOADING -> {
-                ivPlayPause.isEnabled = false
-                ivPlayPause.applyBlurEffect()
-                lottieProgressbar.visibility = View.VISIBLE
-            }
+            PlayerState.STATE_PLAYING -> setPlayStatus()
+            PlayerState.STATE_PAUSED, PlayerState.STATE_PREPARED, PlayerState.STATE_DEFAULT -> setPauseStatus()
+            PlayerState.STATE_LOADING -> setLoadingStatus()
         }
     }
 
-    private fun applyBackgroundBlur() = with(binding) {
-        ivPlayPause.applyBlurEffect()
+    private fun setPlayStatus() = with(binding) {
+        lottieProgressbar.visibility = View.GONE
+        btnPlayback.isClickable = true
+        btnPlayback.clearBlurEffect()
+        btnPlayback.setStatusPlay()
+        notifyService.showNotification()
     }
 
-    private fun clearBackgroundBlur() = with(binding) {
-        ivPlayPause.clearBlurEffect()
+    private fun setPauseStatus() = with(binding) {
+        lottieProgressbar.visibility = View.GONE
+        btnPlayback.isClickable = true
+        btnPlayback.clearBlurEffect()
+        btnPlayback.setStatusPause()
     }
 
-    private fun showPlayButton() {
-        binding.ivPlayPause.setImageResource(R.drawable.play_circle)
-    }
-
-    private fun showPauseButton() {
-        binding.ivPlayPause.setImageResource(R.drawable.pause_circle)
+    private fun setLoadingStatus() = with(binding) {
+        btnPlayback.isClickable = false
+        btnPlayback.applyBlurEffect()
+        lottieProgressbar.visibility = View.VISIBLE
     }
 
     private fun clickListeners() = with(binding) {
@@ -138,7 +126,7 @@ class RadioFragment :
         btnEmail.setOnClickListener(listener)
         btnShare.setOnClickListener(listener)
         btnWebsite.setOnClickListener(listener)
-        ivPlayPause.setOnClickListener(listener)
+        btnPlayback.setOnClickListener(listener)
     }
 
     private fun onClickListener() = View.OnClickListener {
@@ -147,7 +135,7 @@ class RadioFragment :
                 btnEmail -> sendEmail()
                 btnShare -> shareSong()
                 btnWebsite -> visitWebsite()
-                ivPlayPause -> playBackManager()
+                btnPlayback -> playBackManager()
             }
         }
     }
