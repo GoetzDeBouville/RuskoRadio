@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hellcorp.extensions.formatExpression
+import com.hellcorp.extensions.songArtistTranslite
 import com.hellcorp.restquest.domain.network.models.LoadingStatus
 import com.prosto.itunesservice.domain.api.ItunesInteractor
 import com.prosto.itunesservice.domain.models.LoadingTrackStatus
@@ -69,11 +70,23 @@ class RadioViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Method getFirstTrack requests first track from the search result with itunesInteractor.getFirstTrack,
+     * in case it's getting track value equals null
+     * method calls extension songArtistTranslite that translates the artist name
+     * and calls itunesInteractor.getFirstTrack again than calls itunesResult.
+     */
     private fun getFirstTrack(expression: String?) {
         viewModelScope.launch {
             expression?.let {
                 itunesInteractor.getFirstTrack(expression).collect {
-                    itunesResult(it)
+                    if (it.first == null) {
+                        itunesInteractor.getFirstTrack(expression.songArtistTranslite()).collect {
+                            itunesResult(it)
+                        }
+                    } else {
+                        itunesResult(it)
+                    }
                 }
             }
         }
@@ -92,7 +105,6 @@ class RadioViewModel @Inject constructor(
         if (result.first != null) {
             _radioState.value = RadioState.Content(result.first!!)
             val title = result.first!!.title
-            Log.i("MyLog", "title = $title")
             if (expression != title && !title.contains(IGNORE_EXPRESSION)) {
                 getFirstTrack(title.formatExpression())
                 expression = title
