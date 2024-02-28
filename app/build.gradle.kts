@@ -14,8 +14,8 @@ android {
         applicationId = "com.prosto.ruskoradio"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 4
-        versionName = "1.0.1.1"
+        versionCode = 5
+        versionName = "1.1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -27,6 +27,7 @@ It shows the current song info (artist and title), shows notification, and alarm
 <img src="./screenshots/000screencast.gif" width="240" height="480"> 
 <img src="./screenshots/001screenshot.png" width="240" height="480"> 
 <img src="./screenshots/002screenshot.png" width="240" height="480"> 
+
 ## Getting Started 🛠
 
 1. Clone this repository to your local machine.
@@ -52,10 +53,10 @@ It shows the current song info (artist and title), shows notification, and alarm
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
 ## Project Roadmap:
+✅Add binding of album cover image (using Itunes search API???) - Open for discussion 😁
 - Add dark theme support
 - Add alarm manager (screen for alarm settings)
 - Add localizations
-- Add binding of album cover image (using Itunes search API???) - Open for discussion 😁
 - Add dialog message for novigation to permission list
 - Fix notification (that doesn't apear in case the phone is in battery safety mode)
 
