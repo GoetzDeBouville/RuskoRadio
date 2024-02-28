@@ -2,4 +2,6 @@
 <resources>
     <dimen name="text_20">20sp</dimen>
     <dimen name="text_24">24sp</dimen>
+    <dimen name="img_corner_16">16dp</dimen>
+    <dimen name="img_corner_8">8dp</dimen>
 </resources>

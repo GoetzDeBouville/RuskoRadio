@@ -15,4 +15,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Rusko Radio"
 include(":app")
- 
+include(":core:itunesservice")
+include(":core:presentation")
+include(":core:di-qualifiers")
+include(":core:extentions")
