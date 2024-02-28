@@ -1,4 +1,4 @@
-package com.hellcorp.extentions
+package com.hellcorp.extensions
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.hellcorp.extentions.test", appContext.packageName)
+        assertEquals("com.hellcorp.extensions.test", appContext.packageName)
     }
 }

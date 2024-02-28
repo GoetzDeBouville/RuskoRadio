@@ -1,4 +1,4 @@
-package com.hellcorp.extentions
+package com.hellcorp.extensions
 
 import android.graphics.RenderEffect
 import android.graphics.Shader

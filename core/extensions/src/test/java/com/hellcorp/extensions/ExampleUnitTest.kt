@@ -1,4 +1,4 @@
-package com.hellcorp.extentions
+package com.hellcorp.extensions
 
 import org.junit.Test
 
