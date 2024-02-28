@@ -17,13 +17,17 @@ It shows the current song info (artist and title), shows notification, and alarm
 - Arcitecture: MVVM+StateFlow, Single Activity + Android Navigation
 - Network: Retrofit2
 - Mediaplayer
+- Coil
 - DI - Hilt
-- Ads - yandex mobileads
-- Scheduled notifications
+- Ads - Yandex MobilAds
+- Alarm manager
+- Custom view
 
 ## Screencast 
 <img src="./screenshots/000screncast.gif" width="240" height="480"> 
-
+<br>
+<img src="./screenshots/001screenshot.png" width="240" height="480"> 
+<img src="./screenshots/002screenshot.png" width="240" height="480"> 
 ## Getting Started 🛠
 
 1. Clone this repository to your local machine.
