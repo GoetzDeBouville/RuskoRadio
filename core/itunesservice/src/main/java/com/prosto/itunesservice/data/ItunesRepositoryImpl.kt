@@ -20,9 +20,11 @@ class ItunesRepositoryImpl(
         when (response.resultCode) {
             ItunesRetrofitClient.NO_INTERNET -> emit(Resource.Error(LoadingTrackStatus.NO_INTERNET))
 
-            ItunesRetrofitClient.SUCCESS_RESPONSE -> emit(Resource.Success((response as TracksSearchResponse).tracks.map {
-                mapper.mapDtoToEntity(it)
-            }))
+            ItunesRetrofitClient.SUCCESS_RESPONSE -> {
+                emit(Resource.Success((response as TracksSearchResponse).tracks.map {
+                    mapper.mapDtoToEntity(it)
+                }))
+            }
 
             else -> emit(Resource.Error(LoadingTrackStatus.SERVER_ERROR))
         }
