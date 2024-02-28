@@ -10,12 +10,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.hellcorp.extentions.applyBlurEffect
+import com.hellcorp.extentions.clearBlurEffect
+import com.hellcorp.extentions.vibrateShot
 import com.hellcorp.presentation.BaseFragment
 import com.prosto.itunesservice.domain.models.Track
 import com.prosto.ruskoradio.R
-import com.prosto.ruskoradio.core.utils.applyBlurEffect
-import com.prosto.ruskoradio.core.utils.clearBlurEffect
-import com.prosto.ruskoradio.core.utils.vibrateShot
 import com.prosto.ruskoradio.databinding.FragmentRadioBinding
 import com.prosto.ruskoradio.main.NotificationService
 import com.prosto.ruskoradio.radioscreen.domain.TrackState
