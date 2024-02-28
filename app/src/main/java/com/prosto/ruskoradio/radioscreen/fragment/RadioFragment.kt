@@ -1,16 +1,13 @@
 package com.prosto.ruskoradio.radioscreen.fragment
 
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
 import android.net.Uri
 import android.util.Log
-import android.view.RoundedCorner
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.palette.graphics.Palette
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.hellcorp.presentation.BaseFragment
@@ -186,7 +183,7 @@ class RadioFragment :
     }
 
     private fun renderTrackCover(state: TrackState) {
-        when(state) {
+        when (state) {
             is TrackState.Content -> state.track?.let { fetchCover(it) }
             else -> binding.ivLogo.setImageResource(R.drawable.logo)
         }
