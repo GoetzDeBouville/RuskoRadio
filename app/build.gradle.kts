@@ -14,8 +14,8 @@ android {
         applicationId = "com.prosto.ruskoradio"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 3
-        versionName = "1.0.1.0"
+        versionCode = 4
+        versionName = "1.0.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -66,4 +66,10 @@ dependencies {
     implementation(libs.yandex.ad)
     implementation(libs.lottie)
     implementation(libs.mobmetricalib)
+
+    implementation(libs.coil)
+
+    implementation(project(":core:itunesservice"))
+    implementation(project(":core:presentation"))
+    implementation(project(":core:di-qualifiers"))
 }

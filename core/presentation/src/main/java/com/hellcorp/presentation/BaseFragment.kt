@@ -1,4 +1,4 @@
-package com.prosto.ruskoradio.core.ui
+package com.hellcorp.presentation
 
 
 import android.os.Bundle
@@ -6,16 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
 /**
- * Базовый фрагмент, позволяет привести к единому виду все реализации фрагментов, работает в связке с BaseViewModel.
- *
- * При реализации потребуется реализовать абстрактные методы для инициализации вью и слушатели событий
+ * Base fragment, inheritance from this fragment makes whole fragments the same implementation and construction.
+ * Also this fragment inits viewBinding by default.
  */
-abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
     private val inflate: Inflate<VB>,
 ) : Fragment() {
 

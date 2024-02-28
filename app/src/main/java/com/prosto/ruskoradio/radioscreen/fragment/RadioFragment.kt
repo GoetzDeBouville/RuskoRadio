@@ -3,17 +3,22 @@ package com.prosto.ruskoradio.radioscreen.fragment
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import coil.load
+import coil.transform.RoundedCornersTransformation
+import com.hellcorp.presentation.BaseFragment
+import com.prosto.itunesservice.domain.models.Track
 import com.prosto.ruskoradio.R
-import com.prosto.ruskoradio.databinding.FragmentRadioBinding
-import com.prosto.ruskoradio.core.ui.BaseFragment
 import com.prosto.ruskoradio.core.utils.applyBlurEffect
 import com.prosto.ruskoradio.core.utils.clearBlurEffect
 import com.prosto.ruskoradio.core.utils.vibrateShot
+import com.prosto.ruskoradio.databinding.FragmentRadioBinding
 import com.prosto.ruskoradio.main.NotificationService
+import com.prosto.ruskoradio.radioscreen.domain.TrackState
 import com.prosto.ruskoradio.radioscreen.domain.player.models.PlayerState
 import com.prosto.ruskoradio.radioscreen.domain.radio.models.RadioState
 import com.prosto.ruskoradio.radioscreen.viewmodel.RadioViewModel
@@ -47,6 +52,12 @@ class RadioFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.radioState.collect { state ->
                 renderSongTitleState(state)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.trackState.collect { state ->
+                renderTrackCover(state)
             }
         }
         clickListeners()
@@ -83,58 +94,39 @@ class RadioFragment :
 
     private fun renderPlayerState(state: PlayerState) = with(binding) {
         when (state) {
-            PlayerState.STATE_PLAYING -> {
-                ivPlayPause.isEnabled = true
-                ivPlayPause.clearBlurEffect()
-                lottieProgressbar.visibility = View.GONE
-                showPauseButton()
-                notifyService.showNotification()
-            }
-
-            PlayerState.STATE_PAUSED, PlayerState.STATE_PREPARED, PlayerState.STATE_DEFAULT -> {
-                ivPlayPause.isEnabled = true
-                ivPlayPause.clearBlurEffect()
-                lottieProgressbar.visibility = View.GONE
-                showPlayButton()
-            }
-
-            PlayerState.STATE_LOADING -> {
-                ivPlayPause.isEnabled = false
-                ivPlayPause.applyBlurEffect()
-                lottieProgressbar.visibility = View.VISIBLE
-            }
+            PlayerState.STATE_PLAYING -> setPlayStatus()
+            PlayerState.STATE_PAUSED, PlayerState.STATE_PREPARED, PlayerState.STATE_DEFAULT -> setPauseStatus()
+            PlayerState.STATE_LOADING -> setLoadingStatus()
         }
     }
 
-    private fun applyBackgroundBlur() = with(binding) {
-        ivPlayPause.applyBlurEffect()
+    private fun setPlayStatus() = with(binding) {
+        lottieProgressbar.visibility = View.GONE
+        btnPlayback.isClickable = true
+        btnPlayback.clearBlurEffect()
+        btnPlayback.setStatusPlay()
+        notifyService.showNotification()
     }
 
-    private fun clearBackgroundBlur() = with(binding) {
-        ivPlayPause.clearBlurEffect()
+    private fun setPauseStatus() = with(binding) {
+        lottieProgressbar.visibility = View.GONE
+        btnPlayback.isClickable = true
+        btnPlayback.clearBlurEffect()
+        btnPlayback.setStatusPause()
     }
 
-    private fun showPlayButton() {
-        binding.ivPlayPause.setImageResource(R.drawable.play_circle)
+    private fun setLoadingStatus() = with(binding) {
+        btnPlayback.isClickable = false
+        btnPlayback.applyBlurEffect()
+        lottieProgressbar.visibility = View.VISIBLE
     }
-
-    private fun showPauseButton() {
-        binding.ivPlayPause.setImageResource(R.drawable.pause_circle)
-    }
-
-//    private fun clickListeners() {
-//        emailBtnClickListener()
-//        shareBtnClickListener()
-//        websiteBtnClickListener()
-//        playBackManager()
-//    }
 
     private fun clickListeners() = with(binding) {
         val listener = onClickListener()
         btnEmail.setOnClickListener(listener)
         btnShare.setOnClickListener(listener)
         btnWebsite.setOnClickListener(listener)
-        ivPlayPause.setOnClickListener(listener)
+        btnPlayback.setOnClickListener(listener)
     }
 
     private fun onClickListener() = View.OnClickListener {
@@ -143,7 +135,7 @@ class RadioFragment :
                 btnEmail -> sendEmail()
                 btnShare -> shareSong()
                 btnWebsite -> visitWebsite()
-                ivPlayPause -> playBackManager()
+                btnPlayback -> playBackManager()
             }
         }
     }
@@ -178,12 +170,26 @@ class RadioFragment :
         requireContext().vibrateShot(VIBRO_SHOT_50MS)
     }
 
-//    private fun playBackManager() {
-//        binding.ivPlayPause.setOnClickListener {
-//            viewModel.playbackControl()
-//            requireContext().vibrateShot(VIBRO_SHOT_50MS)
-//        }
-//    }
+    private fun renderTrackCover(state: TrackState) {
+        when (state) {
+            is TrackState.Content -> state.track?.let { fetchCover(it) }
+            else -> binding.ivLogo.setImageResource(R.drawable.logo)
+        }
+    }
+
+    private fun fetchCover(track: Track) = with(binding) {
+        Log.i("MyLog", "track = $track")
+        ivLogo.load(track.getArtwork512()) {
+            placeholder(R.drawable.logo)
+            val density = resources.displayMetrics.density
+            val cornerRadiusPx = resources.getDimension(R.dimen.img_corner_8) * density
+            transformations(
+                RoundedCornersTransformation(
+                    cornerRadiusPx
+                )
+            )
+        }
+    }
 
     companion object {
         private const val TEXT_TYPE = "text/plain"

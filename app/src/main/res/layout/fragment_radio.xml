@@ -12,36 +12,43 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:elevation="2dp"
-        app:layout_constraintBottom_toBottomOf="@id/iv_play_pause"
-        app:layout_constraintEnd_toEndOf="@id/iv_play_pause"
-        app:layout_constraintStart_toStartOf="@id/iv_play_pause"
-        app:layout_constraintTop_toTopOf="@id/iv_play_pause"
+        app:layout_constraintBottom_toBottomOf="@id/btn_playback"
+        app:layout_constraintEnd_toEndOf="@id/btn_playback"
+        app:layout_constraintStart_toStartOf="@id/btn_playback"
+        app:layout_constraintTop_toTopOf="@id/btn_playback"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/progress_bar" />
 
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginHorizontal="16dp"
-        android:contentDescription="@string/logo"
-        android:src="@drawable/logo"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:outlineSpotShadowColor="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/iv_play_pause"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:contentDescription="@string/play_radio"
-        android:src="@drawable/play_circle"
-        android:layout_marginBottom="128dp"
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/logo" />
+    </androidx.cardview.widget.CardView>
+
+    <com.hellcorp.presentation.playback_button.PlaybackButtonView
+        android:id="@+id/btn_playback"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@id/ll_footer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ll_footer"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+        app:pauseButtonId="@drawable/pause_circle"
+        app:playButtonId="@drawable/play_circle" />
 
     <LinearLayout
         android:id="@+id/ll_player"
@@ -49,7 +56,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/iv_play_pause">
+        app:layout_constraintBottom_toTopOf="@+id/btn_playback">
 
         <TextView
             android:id="@+id/tv_on_air"
