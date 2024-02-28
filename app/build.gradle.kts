@@ -72,4 +72,5 @@ dependencies {
     implementation(project(":core:itunesservice"))
     implementation(project(":core:presentation"))
     implementation(project(":core:di-qualifiers"))
+    implementation(project(":core:extentions"))
 }
