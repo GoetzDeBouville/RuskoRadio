@@ -11,6 +11,7 @@ import com.prosto.itunesservice.domain.api.ItunesInteractor
 import com.prosto.itunesservice.domain.models.LoadingTrackStatus
 import com.prosto.itunesservice.domain.models.Track
 import com.prosto.ruskoradio.core.utils.ConfigTool
+import com.prosto.ruskoradio.radioscreen.domain.TrackState
 import com.prosto.ruskoradio.radioscreen.domain.player.models.PlayerState
 import com.prosto.ruskoradio.radioscreen.domain.radio.api.RadioInteractor
 import com.prosto.ruskoradio.radioscreen.domain.radio.models.RadioState
@@ -31,6 +32,8 @@ class RadioViewModel @Inject constructor(
 ) : ViewModel() {
     private var mediaPlayer: MediaPlayer? = null
     private var streamUrl = ""
+    private var track: Track? = null
+    private var expression = ""
     private val _radioState = MutableStateFlow<RadioState>(RadioState.Loading)
     val radioState: StateFlow<RadioState>
         get() = _radioState
@@ -39,12 +42,15 @@ class RadioViewModel @Inject constructor(
     val playerState: StateFlow<PlayerState>
         get() = _playerState
 
+    private val _trackState = MutableStateFlow<TrackState>(TrackState.Empty)
+    val trackState: StateFlow<TrackState>
+        get() = _trackState
+
     init {
         getSongTitle()
         ConfigTool.init(context)
         streamUrl = ConfigTool.getAppConfig().streamUrl
         preparePlayer()
-        getFirstTrack("Great dreamer")
     }
 
     override fun onCleared() {
@@ -56,7 +62,7 @@ class RadioViewModel @Inject constructor(
         viewModelScope.launch {
             while (true) {
                 radioInteractor.updateTitle().collect { result ->
-                    processResult(result)
+                    processRadioState(result)
                     delay(DELAY_3000_MS)
                 }
             }
@@ -74,17 +80,22 @@ class RadioViewModel @Inject constructor(
     }
 
     private fun itunesResult(result: Pair<Track?, LoadingTrackStatus?>) {
+        Log.i("MyLog", "itunesResult = $result")
         if (result.second == null) {
-            Log.i("MyLog", "result = ${result.first}")
+            _trackState.value = TrackState.Content(track = result.first)
         } else {
-            Log.i("MyLog", "result = ${result.second}")
-
+            _trackState.value = TrackState.ConnectionError
         }
     }
 
-    private fun processResult(result: Pair<SongEntity?, LoadingStatus?>) {
+    private fun processRadioState(result: Pair<SongEntity?, LoadingStatus?>) {
         if (result.second == null) {
             _radioState.value = RadioState.Content(result.first!!)
+            Log.i("MyLog", "title = ${result.first!!.title.lowercase()}")
+            if (expression != result.first!!.title.lowercase() && !result.first!!.title.lowercase().contains(IGNORE_EXPRESSION)) {
+                getFirstTrack(result.first!!.title)
+                expression = result.first!!.title.lowercase()
+            }
         } else {
             _radioState.value = RadioState.ConnectionError
         }
@@ -142,5 +153,6 @@ class RadioViewModel @Inject constructor(
 
     companion object {
         private const val DELAY_3000_MS = 3000L
+        private const val IGNORE_EXPRESSION = "rusko radio"
     }
 }

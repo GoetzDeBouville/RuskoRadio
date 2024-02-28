@@ -1,19 +1,27 @@
 package com.prosto.ruskoradio.radioscreen.fragment
 
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
 import android.net.Uri
+import android.util.Log
+import android.view.RoundedCorner
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.palette.graphics.Palette
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.hellcorp.presentation.BaseFragment
+import com.prosto.itunesservice.domain.models.Track
 import com.prosto.ruskoradio.R
 import com.prosto.ruskoradio.core.utils.applyBlurEffect
 import com.prosto.ruskoradio.core.utils.clearBlurEffect
 import com.prosto.ruskoradio.core.utils.vibrateShot
 import com.prosto.ruskoradio.databinding.FragmentRadioBinding
 import com.prosto.ruskoradio.main.NotificationService
+import com.prosto.ruskoradio.radioscreen.domain.TrackState
 import com.prosto.ruskoradio.radioscreen.domain.player.models.PlayerState
 import com.prosto.ruskoradio.radioscreen.domain.radio.models.RadioState
 import com.prosto.ruskoradio.radioscreen.viewmodel.RadioViewModel
@@ -47,6 +55,12 @@ class RadioFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.radioState.collect { state ->
                 renderSongTitleState(state)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.trackState.collect { state ->
+                renderTrackCover(state)
             }
         }
         clickListeners()
@@ -171,12 +185,26 @@ class RadioFragment :
         requireContext().vibrateShot(VIBRO_SHOT_50MS)
     }
 
-//    private fun playBackManager() {
-//        binding.ivPlayPause.setOnClickListener {
-//            viewModel.playbackControl()
-//            requireContext().vibrateShot(VIBRO_SHOT_50MS)
-//        }
-//    }
+    private fun renderTrackCover(state: TrackState) {
+        when(state) {
+            is TrackState.Content -> state.track?.let { fetchCover(it) }
+            else -> binding.ivLogo.setImageResource(R.drawable.logo)
+        }
+    }
+
+    private fun fetchCover(track: Track) = with(binding) {
+        Log.i("MyLog", "track = $track")
+        ivLogo.load(track.getArtwork512()) {
+            placeholder(R.drawable.logo)
+            val density = resources.displayMetrics.density
+            val cornerRadiusPx = resources.getDimension(R.dimen.img_corner_8) * density
+            transformations(
+                RoundedCornersTransformation(
+                    cornerRadiusPx
+                )
+            )
+        }
+    }
 
     companion object {
         private const val TEXT_TYPE = "text/plain"
