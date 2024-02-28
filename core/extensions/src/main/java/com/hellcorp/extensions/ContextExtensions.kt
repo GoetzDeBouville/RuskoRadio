@@ -1,4 +1,4 @@
-package com.hellcorp.extentions
+package com.hellcorp.extensions
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
-import androidx.annotation.RequiresApi
 
 
 /**

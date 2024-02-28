@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hellcorp.extentions"
+    namespace = "com.hellcorp.extensions"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
