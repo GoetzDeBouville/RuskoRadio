@@ -6,6 +6,8 @@ import android.media.MediaPlayer
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hellcorp.extensions.formatExpression
+import com.hellcorp.extensions.songArtistTranslite
 import com.hellcorp.restquest.domain.network.models.LoadingStatus
 import com.prosto.itunesservice.domain.api.ItunesInteractor
 import com.prosto.itunesservice.domain.models.LoadingTrackStatus
@@ -22,7 +24,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,7 +34,6 @@ class RadioViewModel @Inject constructor(
 ) : ViewModel() {
     private var mediaPlayer: MediaPlayer? = null
     private var streamUrl = ""
-    private var track: Track? = null
     private var expression = ""
     private val _radioState = MutableStateFlow<RadioState>(RadioState.Loading)
     val radioState: StateFlow<RadioState>
@@ -64,17 +64,29 @@ class RadioViewModel @Inject constructor(
             while (true) {
                 radioInteractor.updateTitle().collect { result ->
                     processRadioState(result)
-                    delay(DELAY_3000_MS)
+                    delay(DELAY_5000_MS)
                 }
             }
         }
     }
 
+    /**
+     * Method getFirstTrack requests first track from the search result with itunesInteractor.getFirstTrack,
+     * in case it's getting track value equals null
+     * method calls extension songArtistTranslite that translates the artist name
+     * and calls itunesInteractor.getFirstTrack again than calls itunesResult.
+     */
     private fun getFirstTrack(expression: String?) {
         viewModelScope.launch {
             expression?.let {
                 itunesInteractor.getFirstTrack(expression).collect {
-                    itunesResult(it)
+                    if (it.first == null) {
+                        itunesInteractor.getFirstTrack(expression.songArtistTranslite()).collect {
+                            itunesResult(it)
+                        }
+                    } else {
+                        itunesResult(it)
+                    }
                 }
             }
         }
@@ -90,12 +102,12 @@ class RadioViewModel @Inject constructor(
     }
 
     private fun processRadioState(result: Pair<SongEntity?, LoadingStatus?>) {
-        if (result.second == null) {
+        if (result.first != null) {
             _radioState.value = RadioState.Content(result.first!!)
-            Log.i("MyLog", "title = ${result.first!!.title.lowercase()}")
-            if (expression != result.first!!.title.lowercase() && !result.first!!.title.lowercase().contains(IGNORE_EXPRESSION)) {
-                getFirstTrack(result.first!!.title)
-                expression = result.first!!.title.lowercase()
+            val title = result.first!!.title
+            if (expression != title && !title.contains(IGNORE_EXPRESSION)) {
+                getFirstTrack(title.formatExpression())
+                expression = title
             }
         } else {
             _radioState.value = RadioState.ConnectionError
@@ -153,7 +165,7 @@ class RadioViewModel @Inject constructor(
     }
 
     companion object {
-        private const val DELAY_3000_MS = 3000L
-        private const val IGNORE_EXPRESSION = "rusko radio"
+        private const val DELAY_5000_MS = 5000L
+        private const val IGNORE_EXPRESSION = "RUSKO RADIO"
     }
 }

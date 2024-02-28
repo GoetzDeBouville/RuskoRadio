@@ -10,9 +10,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.hellcorp.extentions.applyBlurEffect
-import com.hellcorp.extentions.clearBlurEffect
-import com.hellcorp.extentions.vibrateShot
+import com.hellcorp.extensions.applyBlurEffect
+import com.hellcorp.extensions.clearBlurEffect
+import com.hellcorp.extensions.vibrateShot
 import com.hellcorp.presentation.BaseFragment
 import com.prosto.itunesservice.domain.models.Track
 import com.prosto.ruskoradio.R
