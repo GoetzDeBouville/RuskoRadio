@@ -24,10 +24,7 @@ class PlaybackButtonView @JvmOverloads constructor(
     deffstyleAttr,
     deffstyleRes
 ) {
-    // minViewSize must be more on equal to view sizes on layout,
-    // because of all images is converting to raster (bitmap picture)
-    // on initialization with a particular size
-    private val minViewSize: Int = resources.getDimension(R.dimen.minViewSize).toInt()
+    private val minViewSize = resources.getDimensionPixelSize(R.dimen.minViewSize)
 
     private var imageBitmap: Bitmap?
     private var playBitmap: Bitmap?
@@ -40,14 +37,8 @@ class PlaybackButtonView @JvmOverloads constructor(
             attrs, R.styleable.PlaybackButtonView, deffstyleAttr, deffstyleRes
         ).apply {
             try {
-                playBitmap = getDrawable(R.styleable.PlaybackButtonView_playButtonId)?.toBitmap(
-                    minViewSize,
-                    minViewSize
-                )
-                pauseBitmap = getDrawable(R.styleable.PlaybackButtonView_pauseButtonId)?.toBitmap(
-                    minViewSize,
-                    minViewSize
-                )
+                playBitmap = getDrawable(R.styleable.PlaybackButtonView_playButtonId)?.toBitmap()
+                pauseBitmap = getDrawable(R.styleable.PlaybackButtonView_pauseButtonId)?.toBitmap()
                 isPlaying = getBoolean(R.styleable.PlaybackButtonView_isPlaying, false)
                 imageBitmap = if (isPlaying) pauseBitmap else playBitmap
             } finally {
@@ -58,24 +49,24 @@ class PlaybackButtonView @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
-        val contentWidth = when (MeasureSpec.getMode(widthMeasureSpec)) {
+        val contentWith = when (MeasureSpec.getMode(widthMeasureSpec)) {
             MeasureSpec.UNSPECIFIED -> minViewSize
-            MeasureSpec.EXACTLY -> widthSize
             MeasureSpec.AT_MOST -> widthSize
+            MeasureSpec.EXACTLY -> widthSize
             else -> error("Unexpected widthMode")
         }
+
         val heightSize = MeasureSpec.getSize(heightMeasureSpec)
         val contentHeight = when (MeasureSpec.getMode(heightMeasureSpec)) {
             MeasureSpec.UNSPECIFIED -> minViewSize
-            MeasureSpec.EXACTLY -> heightSize
             MeasureSpec.AT_MOST -> heightSize
-            else -> error("Unexpected widthMode")
+            MeasureSpec.EXACTLY -> heightSize
+            else -> error("Unexpected size heightMode")
         }
 
-        val size = min(contentHeight, contentWidth)
+        val size = min(contentWith, contentHeight)
         setMeasuredDimension(size, size)
     }
-
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -110,13 +101,13 @@ class PlaybackButtonView @JvmOverloads constructor(
 
     fun setStatusPlay() {
         isPlaying = true
-        imageBitmap = if (isPlaying) pauseBitmap else playBitmap
+        imageBitmap = pauseBitmap
         invalidate()
     }
 
     fun setStatusPause() {
         isPlaying = false
-        imageBitmap = if (isPlaying) pauseBitmap else playBitmap
+        imageBitmap = playBitmap
         invalidate()
     }
 }
