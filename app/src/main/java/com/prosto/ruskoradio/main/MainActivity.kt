@@ -10,7 +10,7 @@ import android.view.WindowInsetsController
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import com.hellcorp.presentation.BaseActivity
+import com.prosto.presentation.BaseActivity
 import com.prosto.ruskoradio.R
 import com.prosto.ruskoradio.databinding.ActivityMainBinding
 import com.prosto.ruskoradio.core.utils.ConfigTool

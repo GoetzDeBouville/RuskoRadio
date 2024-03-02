@@ -1,4 +1,4 @@
-package com.hellcorp.restquest.domain.network.models
+package com.prosto.restquest.domain.network.models
 
 enum class LoadingStatus {
     NO_INTERNET,

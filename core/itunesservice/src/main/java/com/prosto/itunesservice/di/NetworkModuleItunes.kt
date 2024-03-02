@@ -1,7 +1,7 @@
 package com.prosto.itunesservice.di
 
 import android.content.Context
-import com.hellcorp.di_qualifiers.ItunesRetrofit
+import com.prosto.di_qualifiers.ItunesRetrofit
 import com.prosto.itunesservice.data.network.ItunesApiService
 import com.prosto.itunesservice.data.network.ItunesRetrofitClient
 import dagger.Module
