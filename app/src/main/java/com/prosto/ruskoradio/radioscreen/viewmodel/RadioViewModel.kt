@@ -6,9 +6,9 @@ import android.media.MediaPlayer
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hellcorp.extensions.formatExpression
-import com.hellcorp.extensions.songArtistTranslite
-import com.hellcorp.restquest.domain.network.models.LoadingStatus
+import com.prosto.extensions.formatExpression
+import com.prosto.extensions.songArtistTranslite
+import com.prosto.restquest.domain.network.models.LoadingStatus
 import com.prosto.itunesservice.domain.api.ItunesInteractor
 import com.prosto.itunesservice.domain.models.LoadingTrackStatus
 import com.prosto.itunesservice.domain.models.Track

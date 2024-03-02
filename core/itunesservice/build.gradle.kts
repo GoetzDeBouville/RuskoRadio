@@ -1,3 +1,5 @@
+import org.gradle.initialization.Environment.Properties
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.androidLibrary)

@@ -39,16 +39,17 @@
             android:src="@drawable/logo" />
     </androidx.cardview.widget.CardView>
 
-    <com.hellcorp.presentation.playback_button.PlaybackButtonView
+    <com.prosto.presentation.playback_button.PlaybackButtonView
         android:id="@+id/btn_playback"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:backgroundTint="@android:color/transparent"
+        android:padding="16dp"
+        app:btnColor="@android:color/black"
+        app:circleStrokeWidth="6dp"
         app:layout_constraintBottom_toTopOf="@id/ll_footer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:pauseButtonId="@drawable/pause_circle"
-        app:playButtonId="@drawable/play_circle" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/ll_player"

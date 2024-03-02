@@ -4,5 +4,7 @@
         <attr name="playButtonId" format="reference"/>
         <attr name="pauseButtonId" format="reference"/>
         <attr name="isPlaying" format="boolean"/>
+        <attr name="circleStrokeWidth" format="dimension"/>
+        <attr name="btnColor" format="color"/>
     </declare-styleable>
 </resources>
