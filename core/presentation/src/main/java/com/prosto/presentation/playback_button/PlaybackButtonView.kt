@@ -31,6 +31,7 @@ class PlaybackButtonView @JvmOverloads constructor(
 
     private var isPlaying = false
     private var strokeWidthPx = 0f
+    private var innerPaddingPx = 0f
 
     private var centerX = 0f
     private var centerY = 0f
@@ -52,7 +53,10 @@ class PlaybackButtonView @JvmOverloads constructor(
                     R.styleable.PlaybackButtonView_circleStrokeWidth,
                     defaultStrokeWidth
                 ).dpToFloat()
-
+                innerPaddingPx = getDimension(
+                    R.styleable.PlaybackButtonView_innerPadding,
+                    defaultStrokeWidth
+                ).dpToFloat()
                 applyPainter(getResourceId(R.styleable.PlaybackButtonView_btnColor, 0))
             } finally {
                 recycle()
@@ -109,8 +113,8 @@ class PlaybackButtonView @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas) {
-        radius = (measuredWidth - strokeWidthPx) / 2f
-        canvas.drawOuterCircle(centerX, centerY, radius)
+        radius = (measuredWidth - strokeWidthPx) / 2f - innerPaddingPx
+        canvas.run { drawOuterCircle(centerX, centerY, radius) }
         if (isPlaying) {
             canvas.drawPause(centerX, centerY, radius)
         } else {

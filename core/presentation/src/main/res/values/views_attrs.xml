@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="PlaybackButtonView">
-        <attr name="playButtonId" format="reference"/>
-        <attr name="pauseButtonId" format="reference"/>
         <attr name="isPlaying" format="boolean"/>
         <attr name="circleStrokeWidth" format="dimension"/>
+        <attr name="innerPadding" format="dimension"/>
         <attr name="btnColor" format="color"/>
     </declare-styleable>
 </resources>
