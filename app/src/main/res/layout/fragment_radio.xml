@@ -69,6 +69,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/exo_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:auto_show="true"
+        app:layout_constraintBottom_toTopOf="@id/ll_player"/>
+
     <LinearLayout
         android:id="@+id/ll_player"
         android:layout_width="match_parent"

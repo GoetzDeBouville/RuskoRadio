@@ -8,10 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prosto.extensions.formatExpression
 import com.prosto.extensions.songArtistTranslite
-import com.prosto.restquest.domain.network.models.LoadingStatus
 import com.prosto.itunesservice.domain.api.ItunesInteractor
 import com.prosto.itunesservice.domain.models.LoadingTrackStatus
 import com.prosto.itunesservice.domain.models.Track
+import com.prosto.restquest.domain.network.models.LoadingStatus
 import com.prosto.ruskoradio.core.utils.ConfigTool
 import com.prosto.ruskoradio.radioscreen.domain.TrackState
 import com.prosto.ruskoradio.radioscreen.domain.player.models.PlayerState

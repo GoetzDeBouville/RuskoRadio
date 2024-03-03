@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.media3.exoplayer.ExoPlayer
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.prosto.extensions.applyBlurEffect
@@ -35,6 +36,7 @@ class RadioFragment :
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var notifyService: NotificationService
     private var songTitle = ""
+    private val exoPlayer by lazy { ExoPlayer.Builder(requireContext()).build() }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -44,6 +46,7 @@ class RadioFragment :
 
     override fun initViews() {
         notifyService = NotificationService(requireContext())
+        binding.exoPlayer.player = exoPlayer
     }
 
     override fun subscribe() {
