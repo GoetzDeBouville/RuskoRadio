@@ -2,11 +2,14 @@ package com.prosto.ruskoradio.main
 
 import android.app.AlarmManager
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Build
 import android.provider.Settings
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsetsController
+import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
@@ -33,25 +36,36 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         ConfigTool.init(this)
         adUnitId = ConfigTool.getAppConfig().adUnitId
         initBannerAdView()
-        setStatusbarTextColor()
+        setStatusBar()
         initMobileAds()
         permissionsSchedule()
         permissionsNotification()
     }
 
-    private fun setStatusbarTextColor() {
-        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+    @Suppress("DEPRECATION")
+    private fun setStatusBar() {
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.background_color)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!isColorDark(ContextCompat.getColor(this, R.color.background_color))) {
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            } else {
+                window.decorView.systemUiVisibility = 0
+            }
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.setSystemBarsAppearance(
                 WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
                 WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
             )
-        } else
-            @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility =
-                window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
     }
+
+    private fun isColorDark(color: Int): Boolean {
+        val darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
+        return darkness >= 0.5
+    }
+
 
     private fun initMobileAds() {
         MobileAds.initialize(this) {}
