@@ -72,9 +72,9 @@ class RadioViewModel @Inject constructor(
 
     /**
      * Method getFirstTrack requests first track from the search result with itunesInteractor.getFirstTrack,
-     * in case it's getting track value equals null
-     * method calls extension songArtistTranslite that translates the artist name
-     * and calls itunesInteractor.getFirstTrack again than calls itunesResult.
+     * in case it's getting track value equals null method calls extension songArtistTranslite,
+     * that translates the artist name and calls itunesInteractor.getFirstTrack again than calls
+     * itunesResult.
      */
     private fun getFirstTrack(expression: String?) {
         viewModelScope.launch {
