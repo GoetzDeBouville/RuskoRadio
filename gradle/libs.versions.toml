@@ -3,7 +3,7 @@ minSdk = "24"
 compileSdk = "34"
 targetSdk = "34"
 
-app = "8.2.2"
+app = "8.3.0"
 kotlin = "1.9.22"
 
 activityKtx = "1.8.2"

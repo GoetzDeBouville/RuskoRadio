@@ -3,8 +3,11 @@ package com.prosto.ruskoradio.radioscreen.fragment
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
+import android.os.Build
 import android.util.Log
 import android.view.View
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,8 +16,8 @@ import coil.transform.RoundedCornersTransformation
 import com.prosto.extensions.applyBlurEffect
 import com.prosto.extensions.clearBlurEffect
 import com.prosto.extensions.vibrateShot
-import com.prosto.presentation.BaseFragment
 import com.prosto.itunesservice.domain.models.Track
+import com.prosto.presentation.BaseFragment
 import com.prosto.ruskoradio.R
 import com.prosto.ruskoradio.databinding.FragmentRadioBinding
 import com.prosto.ruskoradio.main.NotificationService
@@ -172,7 +175,11 @@ class RadioFragment :
 
     private fun renderTrackCover(state: TrackState) {
         when (state) {
-            is TrackState.Content -> state.track?.let { fetchCover(it) }
+            is TrackState.Content -> state.track?.let {
+                fetchCover(it)
+                fetchBackgroundImg(it)
+            }
+
             else -> binding.ivLogo.setImageResource(R.drawable.logo)
         }
     }
@@ -188,6 +195,37 @@ class RadioFragment :
                     cornerRadiusPx
                 )
             )
+        }
+    }
+
+//    private fun fetchBackgroundImg(track: Track) = with(binding) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//            ivBackground.load(track.getArtwork512()) {
+//                placeholder(R.drawable.background_color)
+//            }
+//            ivBackground.applyBlurEffect(radius = 512f)
+//            ivBackground.clearBlurEffect()
+//        }
+//    }
+
+    private fun fetchBackgroundImg(track: Track) = with(binding) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val placeholderDrawable =
+                ContextCompat.getDrawable(requireContext(), R.drawable.background_color)
+            ivBackground.load(track.getArtwork512()) {
+                placeholder(placeholderDrawable)
+                listener(onSuccess = { _, _ ->
+                    if (placeholderDrawable?.constantState == AppCompatResources.getDrawable(
+                            requireContext(),
+                            R.drawable.background_color
+                        )?.constantState
+                    ) {
+                        ivBackground.applyBlurEffect(radius = 512f)
+                    } else {
+                        ivBackground.clearBlurEffect()
+                    }
+                })
+            }
         }
     }
 
