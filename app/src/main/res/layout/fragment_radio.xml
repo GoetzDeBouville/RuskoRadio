@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background_color"
     tools:context=".radioscreen.fragment.RadioFragment">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -20,24 +20,16 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/progress_bar" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_logo"
+    <ImageView
+        android:id="@+id/iv_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:outlineSpotShadowColor="@android:color/transparent"
+        android:layout_marginHorizontal="16dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:contentDescription="@string/logo"
-            android:src="@drawable/logo" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.prosto.presentation.playback_button.PlaybackButtonView
         android:id="@+id/btn_playback"
@@ -45,7 +37,7 @@
         android:layout_height="180dp"
         android:backgroundTint="@android:color/transparent"
         android:padding="16dp"
-        app:btnColor="@android:color/black"
+        app:btnColor="@color/elements_color"
         app:circleStrokeWidth="6dp"
         app:innerPadding="8dp"
         app:layout_constraintBottom_toTopOf="@id/ll_footer"
@@ -65,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/on_air"
-            android:textColor="@color/black"
+            android:textColor="@color/elements_color"
             android:textSize="@dimen/text_24" />
 
         <TextView
@@ -74,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/elements_color"
             android:textSize="32sp" />
     </LinearLayout>
 
@@ -100,15 +92,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_website"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
+            android:contentDescription="@string/to_web"
             android:layout_weight="1"
             android:backgroundTint="@android:color/transparent"
-            android:text="@string/globe"
-            android:textSize="@dimen/text_20" />
+            android:textSize="@dimen/text_20"
+            android:src="@drawable/ic_web_24"/>
 
         <ImageButton
             android:id="@+id/btn_share"
@@ -121,14 +114,15 @@
             android:gravity="center"
             android:src="@drawable/ic_share_24" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="1"
             android:backgroundTint="@android:color/transparent"
-            android:text="@string/email"
+            android:contentDescription="@string/send"
+            android:src="@drawable/ic_letter_24"
             android:textSize="@dimen/text_20" />
 
     </LinearLayout>
