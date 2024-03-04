@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/background_color"
+        android:src="@drawable/background_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,10 +22,10 @@
         android:id="@+id/iv_foreground_transparent"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="-512dp"
+        android:layout_marginEnd="-512dp"
         android:contentDescription="@string/app_name"
         android:src="@color/foreground_color"
-        android:layout_marginEnd="-512dp"
-        android:layout_marginStart="-512dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,10 +58,9 @@
 
     <com.prosto.presentation.playback_button.PlaybackButtonView
         android:id="@+id/btn_playback"
-        android:layout_width="144dp"
-        android:layout_height="144dp"
+        android:layout_width="168dp"
+        android:layout_height="168dp"
         android:backgroundTint="@android:color/transparent"
-        android:padding="16dp"
         app:btnColor="@color/elements_color"
         app:circleStrokeWidth="4dp"
         app:innerPadding="8dp"
@@ -69,48 +68,52 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.media3.ui.PlayerView
-        android:id="@+id/exo_player"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:auto_show="true"
-        app:layout_constraintBottom_toTopOf="@id/ll_player"/>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/exoplayer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo">
 
-    <LinearLayout
-        android:id="@+id/ll_player"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btn_playback">
-
-        <TextView
-            android:id="@+id/tv_on_air"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_player"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/on_air"
-            android:textColor="@color/elements_color"
-            android:textSize="@dimen/text_24" />
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/btn_playback">
 
-        <TextView
-            android:id="@+id/tv_song_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:textAlignment="center"
-            android:textColor="@color/elements_color"
-            android:textSize="32sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_on_air"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/on_air"
+                android:textColor="@color/elements_color"
+                android:textSize="@dimen/text_24" />
+
+            <TextView
+                android:id="@+id/tv_song_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:textAlignment="center"
+                android:textColor="@color/elements_color"
+                android:textSize="32sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_progress_points"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:elevation="2dp"
-        app:layout_constraintBottom_toBottomOf="@id/ll_player"
-        app:layout_constraintEnd_toEndOf="@id/ll_player"
-        app:layout_constraintStart_toStartOf="@id/ll_player"
-        app:layout_constraintTop_toTopOf="@id/ll_player"
+        app:layout_constraintBottom_toBottomOf="@id/scrollview"
+        app:layout_constraintEnd_toEndOf="@id/scrollview"
+        app:layout_constraintStart_toStartOf="@id/scrollview"
+        app:layout_constraintTop_toTopOf="@id/scrollview"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/progress_points" />

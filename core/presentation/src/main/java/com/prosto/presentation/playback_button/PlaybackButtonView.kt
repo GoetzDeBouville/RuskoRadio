@@ -11,6 +11,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import com.prosto.presentation.R
+import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
@@ -127,14 +128,13 @@ class PlaybackButtonView @JvmOverloads constructor(
     }
 
     private fun Canvas.drawPlay(centerX: Float, centerY: Float, radius: Float) {
-        val sideLength = sqrt(3f) * radius
         val angle30 = Math.toRadians(60.0)
         val x1 = centerX + radius
         val y1 = centerY
-        val x2 = centerX - sideLength / 2f * cos(angle30).toFloat()
-        val y2 = centerY + sideLength / 2f * sin(angle30).toFloat()
-        val x3 = centerX - sideLength / 2f * cos(angle30).toFloat()
-        val y3 = centerY - sideLength / 2f * sin(angle30).toFloat()
+        val x2 = centerX - radius * cos(angle30).toFloat()
+        val y2 = centerY - radius * sin(angle30).toFloat()
+        val x3 = centerX - radius * cos(angle30).toFloat()
+        val y3 = centerY + radius * sin(angle30).toFloat()
 
         val path = Path()
         path.moveTo(x1, y1)
