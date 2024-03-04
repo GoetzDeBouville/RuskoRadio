@@ -62,7 +62,6 @@
         android:layout_width="168dp"
         android:layout_height="168dp"
         android:backgroundTint="@android:color/transparent"
-        android:padding="16dp"
         app:btnColor="@color/elements_color"
         app:circleStrokeWidth="4dp"
         app:innerPadding="8dp"
@@ -71,9 +70,9 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
+        android:id="@+id/scrollview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_playback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,10 +111,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:elevation="2dp"
-        app:layout_constraintBottom_toBottomOf="@id/scrollView"
-        app:layout_constraintEnd_toEndOf="@id/scrollView"
-        app:layout_constraintStart_toStartOf="@id/scrollView"
-        app:layout_constraintTop_toTopOf="@id/scrollView"
+        app:layout_constraintBottom_toBottomOf="@id/scrollview"
+        app:layout_constraintEnd_toEndOf="@id/scrollview"
+        app:layout_constraintStart_toStartOf="@id/scrollview"
+        app:layout_constraintTop_toTopOf="@id/scrollview"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/progress_points" />

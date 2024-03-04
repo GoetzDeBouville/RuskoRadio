@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toStartOf="@id/ll_footer" />
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
+        android:id="@+id/scrollview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -114,10 +114,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:elevation="2dp"
-        app:layout_constraintBottom_toBottomOf="@id/scrollView"
-        app:layout_constraintEnd_toEndOf="@id/scrollView"
-        app:layout_constraintStart_toStartOf="@id/scrollView"
-        app:layout_constraintTop_toTopOf="@id/scrollView"
+        app:layout_constraintBottom_toBottomOf="@id/scrollview"
+        app:layout_constraintEnd_toEndOf="@id/scrollview"
+        app:layout_constraintStart_toStartOf="@id/scrollview"
+        app:layout_constraintTop_toTopOf="@id/scrollview"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/progress_points" />
