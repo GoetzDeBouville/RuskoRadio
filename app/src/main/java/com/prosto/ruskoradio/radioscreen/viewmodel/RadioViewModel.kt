@@ -131,7 +131,6 @@ class RadioViewModel @Inject constructor(
 
     private fun pausePlayer() {
         exoPlayer?.pause()
-        exoPlayer?.stop()
         _playerState.value = PlayerState.STATE_PAUSED
         releasePlayer()
     }
