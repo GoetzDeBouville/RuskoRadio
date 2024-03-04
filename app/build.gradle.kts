@@ -69,6 +69,10 @@ dependencies {
 
     implementation(libs.coil)
 
+    implementation(libs.media3.exoplayer)
+    implementation(libs.media3.exoplayer.dash)
+    implementation(libs.media3.ui)
+
     implementation(project(":core:itunesservice"))
     implementation(project(":core:presentation"))
     implementation(project(":core:di-qualifiers"))

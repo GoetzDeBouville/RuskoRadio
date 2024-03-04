@@ -1,17 +1,17 @@
 package com.prosto.ruskoradio.radioscreen.viewmodel
 
 import android.content.Context
-import android.media.AudioAttributes
-import android.media.MediaPlayer
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.media3.common.MediaItem
+import androidx.media3.exoplayer.ExoPlayer
 import com.prosto.extensions.formatExpression
 import com.prosto.extensions.songArtistTranslite
-import com.prosto.restquest.domain.network.models.LoadingStatus
 import com.prosto.itunesservice.domain.api.ItunesInteractor
 import com.prosto.itunesservice.domain.models.LoadingTrackStatus
 import com.prosto.itunesservice.domain.models.Track
+import com.prosto.restquest.domain.network.models.LoadingStatus
 import com.prosto.ruskoradio.core.utils.ConfigTool
 import com.prosto.ruskoradio.radioscreen.domain.TrackState
 import com.prosto.ruskoradio.radioscreen.domain.player.models.PlayerState
@@ -32,7 +32,8 @@ class RadioViewModel @Inject constructor(
     private val radioInteractor: RadioInteractor,
     private val itunesInteractor: ItunesInteractor
 ) : ViewModel() {
-    private var mediaPlayer: MediaPlayer? = null
+    private var exoPlayer: ExoPlayer? = null
+
     private var streamUrl = ""
     private var expression = ""
     private val _radioState = MutableStateFlow<RadioState>(RadioState.Loading)
@@ -51,7 +52,7 @@ class RadioViewModel @Inject constructor(
         getSongTitle()
         ConfigTool.init(context)
         streamUrl = ConfigTool.getAppConfig().streamUrl
-        preparePlayer()
+        startPlayer()
     }
 
     override fun onCleared() {
@@ -115,22 +116,28 @@ class RadioViewModel @Inject constructor(
     }
 
     private fun preparePlayer() {
-        releasePlayer()
-        mediaPlayer = MediaPlayer().apply {
-            setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                    .build()
-            )
-            setDataSource(streamUrl)
-            prepareAsync()
-            setOnPreparedListener {
-                _playerState.value = PlayerState.STATE_PREPARED
-                startPlayer()
-            }
-        }
         _playerState.value = PlayerState.STATE_LOADING
+        exoPlayer = ExoPlayer.Builder(context).build()
+        val mediaItem = MediaItem.fromUri(streamUrl)
+        exoPlayer?.addMediaItem(mediaItem)
+        exoPlayer?.prepare()
+    }
+
+    private fun startPlayer() {
+        preparePlayer()
+        exoPlayer?.play()
+        _playerState.value = PlayerState.STATE_PLAYING
+    }
+
+    private fun pausePlayer() {
+        exoPlayer?.pause()
+        _playerState.value = PlayerState.STATE_PAUSED
+        releasePlayer()
+    }
+
+    private fun releasePlayer() {
+        exoPlayer?.release()
+        _playerState.value = PlayerState.STATE_DEFAULT
     }
 
     fun playbackControl() {
@@ -140,29 +147,13 @@ class RadioViewModel @Inject constructor(
             }
 
             PlayerState.STATE_PREPARED, PlayerState.STATE_PAUSED, PlayerState.STATE_DEFAULT -> {
-                preparePlayer()
+                startPlayer()
             }
 
             else -> Unit
         }
     }
 
-    private fun startPlayer() {
-        mediaPlayer?.start()
-        _playerState.value = PlayerState.STATE_PLAYING
-    }
-
-    private fun pausePlayer() {
-        mediaPlayer?.pause()
-        _playerState.value = PlayerState.STATE_PAUSED
-        releasePlayer()
-    }
-
-    private fun releasePlayer() {
-        mediaPlayer?.release()
-        mediaPlayer = null
-        _playerState.value = PlayerState.STATE_DEFAULT
-    }
 
     companion object {
         private const val DELAY_5000_MS = 5000L
