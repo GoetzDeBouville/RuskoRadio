@@ -25,9 +25,9 @@ It shows the current song info (artist and title), shows notification, and alarm
 
 ## Screencast 
 <img src="./screenshots/000screencast.gif" width="240" height="480"> 
-<img src="./screenshots/001screenshot.png" width="240" height="480"> 
-<img src="./screenshots/002screenshot.png" width="240" height="480"> 
-<img src="./screenshots/003screenshot.png" width="240" height="480"> 
+
+## Screeshots
+<img src="./screenshots/001screenshot.png" width="240" height="480"> <img src="./screenshots/002screenshot.png" width="240" height="480"> <img src="./screenshots/003screenshot.png" width="240" height="480"> 
 <img src="./screenshots/004screenshot.png" width="240" height="480"> 
 
 ## Getting Started 🛠
