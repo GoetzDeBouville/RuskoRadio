@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hellcorp.presentation"
+    namespace = "com.prosto.presentation"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {

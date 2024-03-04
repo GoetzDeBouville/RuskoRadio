@@ -7,8 +7,7 @@
     <string name="loading">Загрузка</string>
     <string name="logo">Лого</string>
     <string name="on_air">В эфире</string>
-    <string name="globe">🌐</string>
-    <string name="email">📧</string>
+    <string name="to_web">Веб версия</string>
     <string name="share">Поделиться</string>
     <string name="send">Отправить</string>
     <string name="feedback">Отзыв или пожелание</string>

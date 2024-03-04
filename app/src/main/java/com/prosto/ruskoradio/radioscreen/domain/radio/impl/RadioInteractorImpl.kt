@@ -1,7 +1,7 @@
 package com.prosto.ruskoradio.radioscreen.domain.radio.impl
 
-import com.hellcorp.restquest.domain.network.models.LoadingStatus
-import com.hellcorp.restquest.domain.network.models.Resource
+import com.prosto.restquest.domain.network.models.LoadingStatus
+import com.prosto.restquest.domain.network.models.Resource
 import com.prosto.ruskoradio.radioscreen.domain.radio.api.SongMapper
 import com.prosto.ruskoradio.radioscreen.domain.radio.api.RadioInteractor
 import com.prosto.ruskoradio.radioscreen.domain.radio.api.RadioRepository

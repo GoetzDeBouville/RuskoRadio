@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hellcorp.di_qualifiers"
+    namespace = "com.prosto.di_qualifiers"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {

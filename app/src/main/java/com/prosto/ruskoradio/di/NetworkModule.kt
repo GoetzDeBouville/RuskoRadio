@@ -1,7 +1,7 @@
 package com.prosto.ruskoradio.di
 
 import android.content.Context
-import com.hellcorp.di_qualifiers.RuskoRadioRetrofit
+import com.prosto.di_qualifiers.RuskoRadioRetrofit
 import com.prosto.ruskoradio.core.utils.ConfigTool
 import com.prosto.ruskoradio.radioscreen.data.converters.SongMapperImpl
 import com.prosto.ruskoradio.radioscreen.data.network.ApiService

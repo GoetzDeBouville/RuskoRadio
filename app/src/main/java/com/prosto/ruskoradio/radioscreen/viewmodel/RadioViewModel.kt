@@ -6,9 +6,9 @@ import android.media.MediaPlayer
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hellcorp.extensions.formatExpression
-import com.hellcorp.extensions.songArtistTranslite
-import com.hellcorp.restquest.domain.network.models.LoadingStatus
+import com.prosto.extensions.formatExpression
+import com.prosto.extensions.songArtistTranslite
+import com.prosto.restquest.domain.network.models.LoadingStatus
 import com.prosto.itunesservice.domain.api.ItunesInteractor
 import com.prosto.itunesservice.domain.models.LoadingTrackStatus
 import com.prosto.itunesservice.domain.models.Track
@@ -72,9 +72,9 @@ class RadioViewModel @Inject constructor(
 
     /**
      * Method getFirstTrack requests first track from the search result with itunesInteractor.getFirstTrack,
-     * in case it's getting track value equals null
-     * method calls extension songArtistTranslite that translates the artist name
-     * and calls itunesInteractor.getFirstTrack again than calls itunesResult.
+     * in case it's getting track value equals null method calls extension songArtistTranslite,
+     * that translates the artist name and calls itunesInteractor.getFirstTrack again than calls
+     * itunesResult.
      */
     private fun getFirstTrack(expression: String?) {
         viewModelScope.launch {

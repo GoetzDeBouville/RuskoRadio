@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".radioscreen.fragment.RadioFragment">
+
+    <ImageView
+        android:id="@+id/iv_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/background_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_foreground_transparent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="-512dp"
+        android:layout_marginEnd="-512dp"
+        android:contentDescription="@string/app_name"
+        android:src="@color/foreground_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_progressbar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="@id/btn_playback"
+        app:layout_constraintEnd_toEndOf="@id/btn_playback"
+        app:layout_constraintStart_toStartOf="@id/btn_playback"
+        app:layout_constraintTop_toTopOf="@id/btn_playback"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/progress_bar" />
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_playback"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.prosto.presentation.playback_button.PlaybackButtonView
+        android:id="@+id/btn_playback"
+        android:layout_width="168dp"
+        android:layout_height="168dp"
+        android:layout_margin="16dp"
+        android:backgroundTint="@android:color/transparent"
+        app:btnColor="@color/elements_color"
+        app:circleStrokeWidth="4dp"
+        app:innerPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ll_footer" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_playback"
+        app:layout_constraintStart_toEndOf="@+id/iv_logo"
+        app:layout_constraintEnd_toStartOf="@+id/ll_footer"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/btn_playback"
+            app:layout_constraintEnd_toEndOf="@id/btn_playback"
+            app:layout_constraintStart_toStartOf="@id/btn_playback">
+
+            <TextView
+                android:id="@+id/tv_on_air"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/on_air"
+                android:textColor="@color/elements_color"
+                android:textSize="@dimen/text_24" />
+
+            <TextView
+                android:id="@+id/tv_song_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:textAlignment="center"
+                android:textColor="@color/elements_color"
+                android:textSize="32sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_progress_points"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="@id/scrollview"
+        app:layout_constraintEnd_toEndOf="@id/scrollview"
+        app:layout_constraintStart_toStartOf="@id/scrollview"
+        app:layout_constraintTop_toTopOf="@id/scrollview"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/progress_points" />
+
+    <LinearLayout
+        android:id="@+id/ll_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_website"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="@string/to_web"
+            android:src="@drawable/ic_web_24"
+            android:textSize="@dimen/text_20" />
+
+        <ImageButton
+            android:id="@+id/btn_share"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/share"
+            android:gravity="center"
+            android:src="@drawable/ic_share_24" />
+
+        <ImageButton
+            android:id="@+id/btn_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="@string/send"
+            android:src="@drawable/ic_letter_24"
+            android:textSize="@dimen/text_20" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

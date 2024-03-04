@@ -5,9 +5,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
         <!-- Primary dark color. -->
-        <item name="colorPrimaryDark">@color/white</item>
-        <item name="statusBarBackground">@color/white</item>
-        <item name="android:windowLightStatusBar">@color/white</item>
+        <item name="colorPrimaryDark">@color/background_color</item>
+        <item name="statusBarBackground">@color/background_color</item>
+        <item name="android:windowLightStatusBar">@color/background_color</item>
     </style>
 
     <style name="Theme.RuskoRadio" parent="Base.Theme.RuskoRadio" />

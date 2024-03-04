@@ -1,4 +1,4 @@
-package com.hellcorp.restquest.domain.network.models
+package com.prosto.restquest.domain.network.models
 
 sealed class Resource<T>(val data: T? = null, val errorType: LoadingStatus? = null) {
     class Success<T>(data: T) : Resource<T>(data)
