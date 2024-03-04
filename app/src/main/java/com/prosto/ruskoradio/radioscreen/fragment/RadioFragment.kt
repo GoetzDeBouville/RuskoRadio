@@ -198,26 +198,16 @@ class RadioFragment :
         }
     }
 
-//    private fun fetchBackgroundImg(track: Track) = with(binding) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-//            ivBackground.load(track.getArtwork512()) {
-//                placeholder(R.drawable.background_color)
-//            }
-//            ivBackground.applyBlurEffect(radius = 512f)
-//            ivBackground.clearBlurEffect()
-//        }
-//    }
-
     private fun fetchBackgroundImg(track: Track) = with(binding) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val placeholderDrawable =
-                ContextCompat.getDrawable(requireContext(), R.drawable.background_color)
+                ContextCompat.getDrawable(requireContext(), R.drawable.background_image)
             ivBackground.load(track.getArtwork512()) {
                 placeholder(placeholderDrawable)
                 listener(onSuccess = { _, _ ->
                     if (placeholderDrawable?.constantState == AppCompatResources.getDrawable(
                             requireContext(),
-                            R.drawable.background_color
+                            R.drawable.background_image
                         )?.constantState
                     ) {
                         ivBackground.applyBlurEffect(radius = 512f)
