@@ -7,6 +7,7 @@
 
 [![PlayMarket](https://img.shields.io/badge/GooglePlay-green.svg?style=plastic&logo=googleplay)](https://play.google.com/store/apps/details?id=com.prosto.ruskoradio)
 
+[![PlayMarket](https://img.shields.io/badge/Rustore-blue.svg?style=plastic&logo=Rustore)](https://apps.rustore.ru/app/com.prosto.ruskoradio)
 <br>
 Application for playing streaming online radio for service https://www.ruskoradio.ru/
 <br>
