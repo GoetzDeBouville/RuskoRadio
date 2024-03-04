@@ -16,7 +16,7 @@ It shows the current song info (artist and title), shows notification, and alarm
 - Coroutines + Flow
 - Arcitecture: MVVM+StateFlow, Single Activity + Android Navigation
 - Network: Retrofit2
-- Mediaplayer
+- [ExoPlayer](https://exoplayer.dev/)
 - Coil
 - DI - Hilt
 - Ads - Yandex MobilAds
