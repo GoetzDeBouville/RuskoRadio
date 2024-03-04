@@ -5,7 +5,7 @@
 [![Hilt](https://img.shields.io/badge/Hilt-2.49-red.svg?style=plastic&logo=Hilt)](https://dagger.dev/hilt/)
 [![KSP](https://img.shields.io/badge/KSP-blueviolet?style=plastic)](https://kotlinlang.org/docs/ksp-overview.html)
 
-[![PlayMarket](https://img.shields.io/badge/GooglePlay-green.svg?style=plastic&logo=googleplay)](https://play.google.com/store/apps/details?id=com.prosto.ruskoradio) [![PlayMarket](https://img.shields.io/badge/Rustore-blue.svg?style=plastic&logo=Rustore)](https://apps.rustore.ru/app/com.prosto.ruskoradio)
+[![PlayMarket](https://img.shields.io/badge/GooglePlay-green.svg?style=plastic&logo=googleplay)](https://play.google.com/store/apps/details?id=com.prosto.ruskoradio) [![Rustore](https://img.shields.io/badge/Rustore-blue.svg?style=plastic&logo=Rustore)](https://apps.rustore.ru/app/com.prosto.ruskoradio)
 <br>
 Application for playing streaming online radio for service https://www.ruskoradio.ru/
 <br>
@@ -18,6 +18,7 @@ It shows the current song info (artist and title), shows notification, and alarm
 - Arcitecture: MVVM+StateFlow, Single Activity + Android Navigation
 - Network: Retrofit2
 - [ExoPlayer](https://exoplayer.dev/)
+- Itunes search API
 - Coil
 - DI - Hilt
 - Ads - Yandex MobilAds
@@ -55,8 +56,8 @@ It shows the current song info (artist and title), shows notification, and alarm
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
 ## Project Roadmap:
-✅Add binding of album cover image (using Itunes search API???) - Open for discussion 😁
-- Add dark theme support
+✅ Add binding of album cover image (using Itunes search API???)
+✅ Add dark theme support
 - Add alarm manager (screen for alarm settings)
 - Add localizations
 - Add dialog message for novigation to permission list
