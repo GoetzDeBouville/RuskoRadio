@@ -5,7 +5,7 @@
 [![Hilt](https://img.shields.io/badge/Hilt-2.49-red.svg?style=plastic&logo=Hilt)](https://dagger.dev/hilt/)
 [![KSP](https://img.shields.io/badge/KSP-blueviolet?style=plastic)](https://kotlinlang.org/docs/ksp-overview.html)
 
-[![PlayMarket](https://img.shields.io/badge/PlayMarket-blue.svg?style=plastic&logo=googleplay)](https://play.google.com/store/apps/details?id=com.prosto.ruskoradio)
+[![PlayMarket](https://img.shields.io/badge/GooglePlay.svg?style=plastic&logo=googleplay)](https://play.google.com/store/apps/details?id=com.prosto.ruskoradio)
 
 <br>
 Application for playing streaming online radio for service https://www.ruskoradio.ru/
