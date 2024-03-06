@@ -11,11 +11,9 @@ import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import com.prosto.presentation.R
-import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
-import kotlin.math.sqrt
 
 class PlaybackButtonView @JvmOverloads constructor(
     context: Context,
@@ -119,7 +117,7 @@ class PlaybackButtonView @JvmOverloads constructor(
         if (isPlaying) {
             canvas.drawPause(centerX, centerY, radius)
         } else {
-            canvas.drawPlay(centerX, centerY, radius - strokeWidthPx)
+            canvas.drawPlay(centerX, centerY, radius - strokeWidthPx * 2)
         }
     }
 
