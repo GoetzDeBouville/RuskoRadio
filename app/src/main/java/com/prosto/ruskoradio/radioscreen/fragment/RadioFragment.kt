@@ -4,6 +4,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
@@ -13,6 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.prosto.extensions.applyBlurEffect
 import com.prosto.extensions.clearBlurEffect
 import com.prosto.extensions.vibrateShot
@@ -21,6 +23,7 @@ import com.prosto.presentation.BaseFragment
 import com.prosto.ruskoradio.R
 import com.prosto.ruskoradio.databinding.FragmentRadioBinding
 import com.prosto.ruskoradio.main.NotificationService
+import com.prosto.ruskoradio.main.analytics.FirebaseAnalyticsProvider
 import com.prosto.ruskoradio.radioscreen.domain.TrackState
 import com.prosto.ruskoradio.radioscreen.domain.player.models.PlayerState
 import com.prosto.ruskoradio.radioscreen.domain.radio.models.RadioState
@@ -35,6 +38,9 @@ class RadioFragment :
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var notifyService: NotificationService
     private var songTitle = ""
+    private val firebaseAnalytics: FirebaseAnalytics by lazy {
+        (requireActivity() as FirebaseAnalyticsProvider).analytics
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -135,12 +141,31 @@ class RadioFragment :
     private fun onClickListener() = View.OnClickListener {
         with(binding) {
             when (it) {
-                btnEmail -> sendEmail()
-                btnShare -> shareSong()
-                btnWebsite -> visitWebsite()
-                btnPlayback -> playBackManager()
+                btnEmail -> {
+                    sendEmail()
+                    logButtonClickEvent("email_button_clicked")
+                }
+                btnShare -> {
+                    shareSong()
+                    logButtonClickEvent("share_button_clicked")
+                }
+                btnWebsite -> {
+                    visitWebsite()
+                    logButtonClickEvent("website_button_clicked")
+                }
+                btnPlayback -> {
+                    playBackManager()
+                    logButtonClickEvent("playbackcontroll_button_clicked")
+                }
             }
         }
+    }
+
+    private fun logButtonClickEvent(buttonName: String) {
+        val bundle = Bundle().apply {
+            putString(FirebaseAnalytics.Param.ITEM_NAME, buttonName)
+        }
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle)
     }
 
     private fun sendEmail() {
