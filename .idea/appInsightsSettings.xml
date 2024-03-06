@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.prosto.ruskoradio" />
+                  <option name="mobileSdkAppId" value="1:81536936283:android:ffd8bae21a58fe4b88527e" />
+                  <option name="projectId" value="rusko-radio" />
+                  <option name="projectNumber" value="81536936283" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
