@@ -4,6 +4,7 @@
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-blue.svg?style=plastic&logo=kotlin)](https://kotlinlang.org)
 [![Hilt](https://img.shields.io/badge/Hilt-2.49-red.svg?style=plastic&logo=Hilt)](https://dagger.dev/hilt/)
 [![KSP](https://img.shields.io/badge/KSP-blueviolet?style=plastic)](https://kotlinlang.org/docs/ksp-overview.html)
+[![Firebase](https://img.shields.io/badge/Firebase-gray.svg?style=plastic&logo=firebase)](https://firebase.google.com/)
 
 [![PlayMarket](https://img.shields.io/badge/GooglePlay-green.svg?style=plastic&logo=googleplay)](https://play.google.com/store/apps/details?id=com.prosto.ruskoradio) [![Rustore](https://img.shields.io/badge/Rustore-blue.svg?style=plastic&logo=Rustore)](https://apps.rustore.ru/app/com.prosto.ruskoradio)
 <br>
@@ -24,6 +25,7 @@ It shows the current song info (artist and title), shows notification, and alarm
 - Ads - Yandex MobilAds
 - Alarm manager
 - Custom view
+- Firebase analytics + crashlytics
 
 ## Screencast 
 <img src="./screenshots/000screencast.gif" width="240" height="480"> 
