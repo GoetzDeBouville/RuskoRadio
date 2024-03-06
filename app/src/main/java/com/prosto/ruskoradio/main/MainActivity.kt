@@ -2,7 +2,6 @@ package com.prosto.ruskoradio.main
 
 import android.app.AlarmManager
 import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.provider.Settings
@@ -15,8 +14,8 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.prosto.presentation.BaseActivity
 import com.prosto.ruskoradio.R
-import com.prosto.ruskoradio.databinding.ActivityMainBinding
 import com.prosto.ruskoradio.core.utils.ConfigTool
+import com.prosto.ruskoradio.databinding.ActivityMainBinding
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.common.AdRequest
@@ -62,7 +61,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     private fun isColorDark(color: Int): Boolean {
-        val darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
+        val darkness =
+            1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
         return darkness >= 0.5
     }
 

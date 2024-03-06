@@ -10,7 +10,6 @@ import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
 import android.util.Log
-import com.prosto.ruskoradio.R
 import com.prosto.ruskoradio.main.NotificationService
 import com.prosto.ruskoradio.main.RadioReciever
 import com.yandex.mobile.ads.common.MobileAds
