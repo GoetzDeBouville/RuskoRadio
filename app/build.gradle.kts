@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.serialization)
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -14,8 +16,8 @@ android {
         applicationId = "com.prosto.ruskoradio"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 5
-        versionName = "1.2.0.0"
+        versionCode = 6
+        versionName = "1.2.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,6 +47,7 @@ android {
 
 dependencies {
     implementation(libs.hilt.android)
+    implementation(libs.firebase.crashlytics)
     ksp(libs.hilt.compiler)
 
     implementation(libs.bundles.navigation)
@@ -72,6 +75,8 @@ dependencies {
     implementation(libs.media3.exoplayer)
     implementation(libs.media3.exoplayer.dash)
     implementation(libs.media3.ui)
+
+    implementation(libs.firebase.analytics)
 
     implementation(project(":core:itunesservice"))
     implementation(project(":core:presentation"))

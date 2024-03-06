@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsetsController
@@ -12,10 +13,14 @@ import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 import com.prosto.presentation.BaseActivity
 import com.prosto.ruskoradio.R
 import com.prosto.ruskoradio.core.utils.ConfigTool
 import com.prosto.ruskoradio.databinding.ActivityMainBinding
+import com.prosto.ruskoradio.main.analytics.FirebaseAnalyticsProvider
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.common.AdRequest
@@ -25,12 +30,14 @@ import com.yandex.mobile.ads.common.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate), FirebaseAnalyticsProvider {
     private var adUnitId = ""
     private lateinit var service: NotificationService
+    override val analytics: FirebaseAnalytics by lazy { Firebase.analytics }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initViews() {
+        Log.i("MyLog", "analytics = $analytics")
         service = NotificationService(applicationContext)
         ConfigTool.init(this)
         adUnitId = ConfigTool.getAppConfig().adUnitId
