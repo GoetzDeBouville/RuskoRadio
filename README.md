@@ -67,8 +67,8 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 ## Contributors 📢
 
-<a href="https://github.com/GoetzDeBouville/RuskoRadio/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=GoetzDeBouville/RuskoRadio"/>
+<a href="https://github.com/GoetzDeBouville/DavaiPosmotrim/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=GoetzDeBouville/DavaiPosmotrim"/>
 </a>
 
 ### Contact me  📬
